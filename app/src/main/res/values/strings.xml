@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BookMeal</string>
+    <string name="logoText">FoodSasa</string>
+    <string name="get_started">Get Started</string>
 </resources>

@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    android:background="#ff1c07">
+    android:background="@color/orange">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/splach_hero_text"
@@ -16,12 +16,13 @@
             android:layout_marginTop="150dp"
             android:fontFamily="@font/lobster"
             android:gravity="center"
-            android:text="FoodSasa"
-            android:textColor="#fff"
-            android:textSize="65dp" />
+            android:text="@string/logoText"
+            android:textColor="@color/white"
+            android:textSize="65sp" />
 
 
         <ImageView
+            android:id="@+id/image_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -30,14 +31,14 @@
             android:src="@drawable/ben" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/textButton"
+            android:id="@+id/getStartedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@drawable/buttonradius"
             android:fontFamily="@font/actor"
             android:minHeight="48dp"
-            android:text="Get Started"
+            android:text="@string/get_started"
             android:textSize="20dp" />
 
     </RelativeLayout>
