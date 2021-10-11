@@ -2,7 +2,9 @@ package com.moringaschool.bookmeal.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.moringaschool.bookmeal.Authentication.RegisterActivity;
 import com.moringaschool.bookmeal.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
@@ -17,6 +20,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     ImageView image;
     TextView logo;
     Button getStarted;
+    private  static  int SPLASH_SCREEN=5000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +39,16 @@ public class SplashScreenActivity extends AppCompatActivity {
         image.setAnimation(topAnim);
         logo.setAnimation(topAnim);
         getStarted.setAnimation(bottomAnim);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(SplashScreenActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        },SPLASH_SCREEN);
+
+
     }
 }
