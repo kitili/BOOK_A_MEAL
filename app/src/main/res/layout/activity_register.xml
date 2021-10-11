@@ -4,13 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEEEEE">
+    android:background="@color/grey_bg">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
+        android:orientation="vertical">
     <!--top bar-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lobster"
-                android:text="Food Sasa"
+                android:text="@string/app_name"
                 android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="35dp"
@@ -52,9 +50,9 @@
                 android:layout_height="42dp"
                 android:gravity="center"
                 android:fontFamily="@font/actor"
-                android:background="#fff"
+                android:background="@color/white"
                 android:text="Register"
-                android:textColor="#FA4A0C"
+                android:textColor="@color/orange"
                 android:textSize="22sp"></TextView>
 
         </LinearLayout>
@@ -71,7 +69,7 @@
             android:layout_height="wrap_content"
             android:textColor="#000"
             android:fontFamily="@font/actor"
-            android:text="Sign up to start your new journey"
+            android:text="@string/reg_text"
             android:layout_marginTop="10dp"
             android:textSize="18dp"/>
 
@@ -79,7 +77,7 @@
             android:id="@+id/fullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Name"
+            android:hint="@string/full_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -91,7 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/email"
-            android:hint="Email"
+            android:hint="@string/email"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -104,7 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/phone"
-            android:hint="Phone Number"
+            android:hint="@string/phone_number"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -116,7 +114,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/password"
-            android:hint="Password"
+            android:hint="@string/password"
             app:passwordToggleEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
@@ -129,7 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/confirmPassword"
-            android:hint="confirm password"
+            android:hint="@string/confirm_password"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -146,13 +144,13 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/button_orange_borderadius"
             android:textColor="#fff"
-            android:text="GO" />
+            android:text="@string/go" />
         <Button
             android:id="@+id/backLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:text="ALREADY HAVE AN ACCOUNT?LOGIN"
+            android:text="@string/already_have_an_account"
             android:layout_gravity="center"
             android:elevation="0dp"
             android:textColor="#FA4A0C"/>
