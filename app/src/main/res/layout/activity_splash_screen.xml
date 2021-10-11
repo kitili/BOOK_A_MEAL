@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.SplashScreenActivity">
+    android:padding="10dp"
+    android:background="#ff1c07">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/splach_hero_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:fontFamily="@font/lobster"
+            android:gravity="center"
+            android:text="FoodSasa"
+            android:textColor="#fff"
+            android:textSize="65dp" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="100dp"
+            android:layout_below="@id/splach_hero_text"
+            android:src="@drawable/ben" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/textButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/buttonradius"
+            android:fontFamily="@font/actor"
+            android:minHeight="48dp"
+            android:text="Get Started"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+</ScrollView>

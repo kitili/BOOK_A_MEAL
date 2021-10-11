@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookMeal">
         <activity
-            android:name=".UI.SplashScreenActivity"
+            android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".UI.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
