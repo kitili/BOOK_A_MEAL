@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -15,7 +16,7 @@ import android.widget.TextView;
 import com.moringaschool.bookmeal.Authentication.RegisterActivity;
 import com.moringaschool.bookmeal.R;
 
-public class SplashScreenActivity extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity implements View.OnClickListener {
     Animation topAnim,bottomAnim;
     ImageView image;
     TextView logo;
@@ -49,6 +50,15 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         },SPLASH_SCREEN);
 
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view==getStarted){
+            Intent intent = new Intent(SplashScreenActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        }
 
     }
 }
