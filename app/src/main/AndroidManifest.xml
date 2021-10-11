@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookMeal">
         <activity
+            android:name=".Authentication.LoginActivity"
+            android:exported="true" />
+        <activity
             android:name=".Authentication.RegisterActivity"
             android:exported="true" />
         <activity
