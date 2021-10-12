@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookMeal">
         <activity
+            android:name=".Admin.MenuListActivity"
+            android:exported="true" />
+        <activity
             android:name=".Admin.FoodItemListActivity"
             android:exported="true" />
         <activity
