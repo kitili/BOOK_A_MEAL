@@ -80,23 +80,23 @@
                     android:id="@+id/selectedDate"
                     android:inputType="text"/>
             </com.google.android.material.textfield.TextInputLayout>
-            <Button
-                android:id="@+id/menuitembtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select Food Itens"/>
+
             <com.google.android.material.textfield.TextInputLayout
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Food Item List"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fooditemslist"
-                    android:inputType="text"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+
+         <TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/menu_list"
+             android:hint="Select Food Item"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
