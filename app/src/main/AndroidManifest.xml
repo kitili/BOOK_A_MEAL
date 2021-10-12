@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookMeal">
         <activity
+            android:name=".UI.NoHistoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Admin.UsersListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UI.OrderHistoryActivity"
+            android:exported="true" />
+        <activity
             android:name=".Admin.MenuListActivity"
             android:exported="true" />
         <activity
