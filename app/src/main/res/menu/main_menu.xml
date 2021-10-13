@@ -6,10 +6,10 @@
             android:title="Home"></item>
         <item
             android:id="@+id/nav_orders"
-            android:title="Orders"></item>
+            android:title="Today's Orders"></item>
         <item
             android:id="@+id/nav_history"
-            android:title="History"></item>
+            android:title="Order History"></item>
     </group>
 
     <item android:title="Profile">
@@ -18,6 +18,9 @@
                 <item
                     android:id="@+id/nav_login"
                     android:title="Login"></item>
+                <item
+                    android:id="@+id/nav_register"
+                    android:title="Register"></item>
                 <item
                     android:id="@+id/nav_profile"
                     android:title="Profile"></item>
@@ -31,6 +34,9 @@
     <item android:title="Communicate">
         <menu>
             <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_contact"
+                    android:title="Contact Us"></item>
                 <item
                     android:id="@+id/nav_share"
                     android:title="Share"></item>
