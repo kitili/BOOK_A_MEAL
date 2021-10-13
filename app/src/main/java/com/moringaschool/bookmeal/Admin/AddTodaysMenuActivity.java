@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -22,6 +23,7 @@ import java.util.Collections;
 public class AddTodaysMenuActivity extends AppCompatActivity implements View.OnClickListener {
     Button mDatePickerbtn;
     TextView menu_list;
+    ImageView backhome;
     //TextInputLayout selectedDate;
     boolean[] selectFood;
     ArrayList<Integer> foodList = new ArrayList<>();
@@ -39,6 +41,8 @@ public class AddTodaysMenuActivity extends AppCompatActivity implements View.OnC
         menu_list = findViewById(R.id.menu_list);
         selectedDate = findViewById(R.id.selectedDate);
         mDatePickerbtn.setOnClickListener(this);
+        backhome=findViewById(R.id.back_btn);
+        backhome.setOnClickListener(this);
 
         selectFood = new boolean[dayArray.length];
         menu_list.setOnClickListener(this);
@@ -47,6 +51,10 @@ public class AddTodaysMenuActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View view) {
+        if (view == backhome) {
+            onBackPressed();
+
+        }
 
     }
 }

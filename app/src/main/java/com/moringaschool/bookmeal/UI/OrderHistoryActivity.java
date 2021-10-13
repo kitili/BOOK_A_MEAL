@@ -24,8 +24,6 @@ public class OrderHistoryActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         if (view == backhome) {
             onBackPressed();
-            //Intent intent = new Intent(OrderHistoryActivity.this, RegisterActivity.class);
-            //startActivity(intent);
 
         }
     }

@@ -13,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.moringaschool.bookmeal.Authentication.LoginActivity;
+import com.moringaschool.bookmeal.Authentication.RegisterActivity;
 import com.moringaschool.bookmeal.R;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -70,6 +72,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent=new Intent(MainActivity.this,OrderHistoryActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_login:
+                intent=new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_register:
+                intent=new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_profile:
+                intent=new Intent(MainActivity.this,RegisterActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_contact:
+                intent=new Intent(MainActivity.this,RegisterActivity.class);
+                startActivity(intent);
+                break;
+
 
 
         }

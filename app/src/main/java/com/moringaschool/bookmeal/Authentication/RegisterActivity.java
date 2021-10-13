@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.moringaschool.bookmeal.R;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 Button toLogin,toRegister;
+ImageView backhome;
 TextInputLayout fullName,email,phone,password,confirmPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,8 @@ TextInputLayout fullName,email,phone,password,confirmPassword;
         toLogin=findViewById(R.id.backLogin);
         toRegister.setOnClickListener(this);
         toLogin.setOnClickListener(this);
+        backhome=findViewById(R.id.back_btn);
+        backhome.setOnClickListener(this);
 
         fullName =findViewById(R.id.fullName);
         email = findViewById(R.id.email);
@@ -120,6 +124,10 @@ TextInputLayout fullName,email,phone,password,confirmPassword;
         if(view == toLogin){
             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
+
+        }
+        if (view == backhome) {
+            onBackPressed();
 
         }
 

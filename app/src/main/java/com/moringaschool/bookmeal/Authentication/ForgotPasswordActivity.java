@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.moringaschool.bookmeal.R;
@@ -13,6 +14,7 @@ import com.moringaschool.bookmeal.R;
 public class ForgotPasswordActivity extends AppCompatActivity implements View.OnClickListener{
     Button login,reset;
     TextView email;
+    ImageView backhome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,8 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         reset=findViewById(R.id.reset);
         login.setOnClickListener(this);
         reset.setOnClickListener(this);
+        backhome=findViewById(R.id.back_btn);
+        backhome.setOnClickListener(this);
         //email = findViewById(R.id.email);
     }
     public boolean validateEmail(){
@@ -50,6 +54,10 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
             if (!validateEmail()) {
                 return;
             }
+
+        }
+        if (view == backhome) {
+            onBackPressed();
 
         }
 

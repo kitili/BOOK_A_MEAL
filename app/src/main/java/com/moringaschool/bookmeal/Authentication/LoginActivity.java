@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.moringaschool.bookmeal.R;
@@ -14,6 +15,7 @@ import com.moringaschool.bookmeal.UI.MainActivity;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     Button toRegister, login,forgot_password;
     TextInputLayout email, password;
+    ImageView backhome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         forgot_password.setOnClickListener(this);
         toRegister.setOnClickListener(this);
         login.setOnClickListener(this);
+        backhome=findViewById(R.id.back_btn);
+        backhome.setOnClickListener(this);
     }
 
     public boolean validateEmail() {
@@ -88,6 +92,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (view == forgot_password) {
             Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
             startActivity(intent);
+        }
+        if (view == backhome) {
+            onBackPressed();
+
         }
     }
 }
