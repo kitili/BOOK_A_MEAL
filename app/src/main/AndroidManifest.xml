@@ -17,7 +17,8 @@
             android:exported="true" />
         <activity
             android:name=".UI.OrderHistoryActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".UI.MainActivity"/>
         <activity
             android:name=".Admin.MenuListActivity"
             android:exported="true" />
