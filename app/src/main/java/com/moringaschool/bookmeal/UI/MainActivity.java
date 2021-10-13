@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView=findViewById(R.id.nav_view);
         //textView=findViewById(R.id.textView);
        toolbar=findViewById(R.id.toolbar);
+       toolbar.setTitleTextAppearance(this,R.style.lobsterApperanceToolbar);
        /*----------------------------Tool Bar-----------------------*/
        setSupportActionBar(toolbar);
        /*---------------------------Navigation Menu---------------------*/

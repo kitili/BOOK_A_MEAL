@@ -14,4 +14,8 @@
         <!-- Customize your theme here. -->
 <!--        <item name="android:statusBarColor" tools:ignore="DuplicateDefinition">@color/transparent</item>-->
     </style>
+    <style name="lobsterApperanceToolbar">
+        <item name="android:fontFamily">@font/lobster</item>
+        <item name="android:textSize">24dp</item>
+    </style>
 </resources>
