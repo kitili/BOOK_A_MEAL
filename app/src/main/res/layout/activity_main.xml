@@ -41,8 +41,9 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/actor"
                 android:padding="20dp"
+                android:gravity="center"
                 android:text="Today's Menu"
-                android:textColor="#000"
+                android:textColor="@color/black"
                 android:textSize="34dp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -56,7 +57,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonradius" />
+                    android:background="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <RelativeLayout
