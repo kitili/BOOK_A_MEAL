@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.BookMeal" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/orange</item>
+        <item name="colorPrimary" tools:ignore="DuplicateDefinition">@color/orange</item>
         <item name="colorPrimaryVariant">@color/orange_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -12,5 +12,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+<!--        <item name="android:statusBarColor" tools:ignore="DuplicateDefinition">@color/transparent</item>-->
     </style>
 </resources>
