@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookMeal">
         <activity
+            android:name=".UI.SplashScreenActivity"
+            android:exported="true" />
+        <activity
             android:name=".UI.NoHistoryActivity"
             android:exported="true" />
         <activity
@@ -18,7 +21,7 @@
         <activity
             android:name=".UI.OrderHistoryActivity"
             android:exported="true"
-            android:parentActivityName=".UI.MainActivity"/>
+            android:parentActivityName=".UI.MainActivity" />
         <activity
             android:name=".Admin.MenuListActivity"
             android:exported="true" />
@@ -56,10 +59,10 @@
             android:name=".Authentication.RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".UI.SplashScreenActivity"
+            android:name=".UI.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".UI.MainActivity"
+            android:name=".UI.FoodDetailsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
