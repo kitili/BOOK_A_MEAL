@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookMeal">
         <activity
-            android:name=".UI.SplashScreenActivity"
+            android:name=".UI.FoodDetailsActivity"
             android:exported="true" />
         <activity
             android:name=".UI.NoHistoryActivity"
@@ -62,7 +62,7 @@
             android:name=".UI.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".UI.FoodDetailsActivity"
+            android:name=".UI.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
