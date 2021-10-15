@@ -59,6 +59,10 @@ public class  FoodAdapter extends RecyclerView.Adapter<FoodAdapter.foodviewholde
     public int getItemCount() {
         return mdata.size();
     }
+    public void filterList(List<Food> fiteredList){
+        mdata=fiteredList;
+        notifyDataSetChanged();
+    }
 
     public interface RecyclerViewClickListener{
         void onClick(View v, int position);

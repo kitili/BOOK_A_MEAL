@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.moringaschool.bookmeal.Authentication.LoginActivity;
 import com.moringaschool.bookmeal.Authentication.RegisterActivity;
 import com.moringaschool.bookmeal.Model.Food;
@@ -29,6 +33,8 @@ import com.moringaschool.bookmeal.Recycleview.foodCallback;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
 import androidx.core.util.Pair;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FoodAdapter foodAdapter;
     List<Food> mdata;
     FoodAdapter.RecyclerViewClickListener listener;
+    TextInputEditText food_search;
 
 
     @Override
@@ -68,6 +75,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         initViews();
         initmdataFood();
         SetupFoodAdapter();
+        food_search=findViewById(R.id.food_search1);
+        food_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filter(editable.toString());
+
+            }
+        });
+    }
+    private void filter(String text){
+        List<Food> filteredList=new ArrayList<>();
+        for(Food item:mdata){
+            if(item.getName().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(item);
+
+            }
+
+        }
+        foodAdapter.filterList(filteredList);
     }
 
     private void SetupFoodAdapter() {
