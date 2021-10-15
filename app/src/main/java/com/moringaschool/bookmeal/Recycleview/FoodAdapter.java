@@ -18,6 +18,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.moringaschool.bookmeal.Model.Food;
 import com.moringaschool.bookmeal.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class  FoodAdapter extends RecyclerView.Adapter<FoodAdapter.foodviewholder> {
@@ -86,6 +87,9 @@ public class  FoodAdapter extends RecyclerView.Adapter<FoodAdapter.foodviewholde
         @Override
         public void onClick(View view) {
             listener.onClick(view,getAdapterPosition());
+            if(view==itemView){
+                List<Food> new_order=new ArrayList<>();
+            }
         }
     }
 }

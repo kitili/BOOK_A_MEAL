@@ -11,13 +11,17 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Application;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +35,7 @@ import com.moringaschool.bookmeal.R;
 import com.moringaschool.bookmeal.Recycleview.FoodAdapter;
 import com.moringaschool.bookmeal.Recycleview.foodCallback;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -46,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     List<Food> mdata;
     FoodAdapter.RecyclerViewClickListener listener;
     TextInputEditText food_search;
+    Button order;
+
 
 
     @Override
@@ -186,6 +193,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent = new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(intent);
                 break;
+
+            case R.id.nav_share:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT,
+                        "Hey check out my app at: https://play.google.com/store/apps/" );
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
 
 
         }
