@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.moringaschool.bookmeal"
-        minSdk 21
+        minSdk 24
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -45,6 +45,8 @@ dependencies {
 //    Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 
 //    RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.1.0'

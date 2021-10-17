@@ -12,12 +12,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,13 +33,18 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.moringaschool.bookmeal.Authentication.LoginActivity;
 import com.moringaschool.bookmeal.Authentication.RegisterActivity;
+import com.moringaschool.bookmeal.Data;
+import com.moringaschool.bookmeal.LoginResponse;
 import com.moringaschool.bookmeal.Model.Food;
 import com.moringaschool.bookmeal.R;
 import com.moringaschool.bookmeal.Recycleview.FoodAdapter;
 import com.moringaschool.bookmeal.Recycleview.foodCallback;
+import com.moringaschool.bookmeal.Tokens;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -52,6 +60,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FoodAdapter.RecyclerViewClickListener listener;
     TextInputEditText food_search;
     Button order;
+    //shared preference
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Username = "usernameKey";
+    public static final String AccessToken = "access_token";
+    public static final String RefreshToken = "refresh_token";
+    public static final String Email = "emailKey";
+    public static final String Id = "idKey";
+    SharedPreferences sharedpreferences;
 
 
 
@@ -70,15 +86,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         /*---------------------------Navigation Menu---------------------*/
         //hide or show items
         Menu menu = navigationView.getMenu();
-        menu.findItem(R.id.nav_logout).setVisible(false);
-        menu.findItem(R.id.nav_profile).setVisible(false);
+        menu.findItem(R.id.nav_login).setVisible(false);
+        menu.findItem(R.id.nav_register).setVisible(false);
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
-        
+        //get the login details
+        Intent intent = getIntent();
+        if(intent.getExtras()!=null) {
+            Data data= (Data) getIntent().getSerializableExtra("data");
+            Tokens token=data.getTokens();
+
+            String logged_access_token=token.getAccess();
+            String logged_refresh_token=token.getRefresh();
+            String logged_email=data.getEmail();
+            String logged_username=data.getUsername();
+            String logged_id=data.getId();
+            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString(Id, logged_id);
+            editor.putString(Username, logged_username);
+            editor.putString(Email, logged_email);
+            editor.putString(AccessToken, logged_access_token);
+            editor.putString(RefreshToken, logged_refresh_token);
+            editor.commit();
+
+
+        }
         initViews();
         initmdataFood();
         SetupFoodAdapter();
@@ -177,6 +214,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent = new Intent(MainActivity.this, OrderHistoryActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_logout:
+                SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.clear();
+                editor.commit();
             case R.id.nav_login:
                 intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);

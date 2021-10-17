@@ -7,14 +7,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.moringaschool.bookmeal.ApiClient;
 import com.moringaschool.bookmeal.R;
+import com.moringaschool.bookmeal.RegisterRequest;
+import com.moringaschool.bookmeal.RegisterResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 Button toLogin,toRegister;
 ImageView backhome;
-TextInputLayout fullName,email,phone,password,confirmPassword;
+TextInputLayout fullName,email,password,confirmPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +36,6 @@ TextInputLayout fullName,email,phone,password,confirmPassword;
 
         fullName =findViewById(R.id.fullName);
         email = findViewById(R.id.email);
-        phone = findViewById(R.id.phone);
         password = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirmPassword);
 
@@ -63,19 +70,7 @@ TextInputLayout fullName,email,phone,password,confirmPassword;
         }
 
     }
-    public boolean validatePhone(){
-        String val = phone.getEditText().getText().toString();
 
-        if (val.isEmpty()) {
-            phone.setError("Field cannot be empty");
-            return false;
-        } else {
-            phone.setError(null);
-            phone.setErrorEnabled(false);
-            return true;
-        }
-
-    }
     public boolean validatePassword(){
         String val = password.getEditText().getText().toString();
         String val2 = confirmPassword.getEditText().getText().toString();
@@ -100,7 +95,7 @@ TextInputLayout fullName,email,phone,password,confirmPassword;
             password.setError("Password is too weak");
             return false;
         }
-        else if(val != val2){
+        else if(!val.equals(val2)){
             password.setError("Password do not match");
             return false;
         }
@@ -112,13 +107,45 @@ TextInputLayout fullName,email,phone,password,confirmPassword;
         }
 
     }
+    public void registerUser(RegisterRequest registerRequest){
+        Call<RegisterResponse> registerResponseCall= ApiClient.getService().registerUser(registerRequest);
+        registerResponseCall.enqueue(new Callback<RegisterResponse>() {
+            @Override
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                if(response.isSuccessful()){
+                    String message="Registration successfull";
+                    Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+
+                }else{
+                    String message="an error occurred ease try again later";
+                    Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                String message=t.getLocalizedMessage();
+                Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+    }
 
     @Override
     public void onClick(View view) {
         if(view == toRegister){
-            if (!validateName() | !validatePassword() | !validatePhone() | !validateEmail() | !validateName()) {
-                return;
+           if (!validateName() | !validatePassword()  | !validateEmail() | !validateName()) {
+               return;
             }
+            RegisterRequest registerRequest=new RegisterRequest();
+            registerRequest.setEmail(email.getEditText().getText().toString());
+            registerRequest.setUsername(fullName.getEditText().getText().toString());
+            registerRequest.setPassword(password.getEditText().getText().toString());
+            registerRequest.setPassword2(confirmPassword.getEditText().getText().toString());
+            registerUser(registerRequest);
 
         }
         if(view == toLogin){
