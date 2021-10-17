@@ -219,6 +219,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.clear();
                 editor.commit();
+                intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
             case R.id.nav_login:
                 intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);

@@ -15,6 +15,8 @@ import com.moringaschool.bookmeal.R;
 import com.moringaschool.bookmeal.RegisterRequest;
 import com.moringaschool.bookmeal.RegisterResponse;
 
+import org.json.JSONObject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -118,8 +120,13 @@ TextInputLayout fullName,email,password,confirmPassword;
                     startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
 
                 }else{
-                    String message="an error occurred ease try again later";
-                    Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
+                    //String message="an error occurred ease try again later";
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        Toast.makeText(RegisterActivity.this, jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    };
                 }
 
             }

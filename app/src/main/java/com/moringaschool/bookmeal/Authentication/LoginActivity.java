@@ -23,6 +23,8 @@ import com.moringaschool.bookmeal.RegisterResponse;
 import com.moringaschool.bookmeal.Tokens;
 import com.moringaschool.bookmeal.UI.MainActivity;
 
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.Arrays;
@@ -73,21 +75,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public boolean validatePassword() {
         String val = password.getEditText().getText().toString();
-        String passwordVal = "^" +
-                //"(?=.*[0-9])" +         //at least 1 digit
-                //"(?=.*[a-z])" +         //at least 1 lower case letter
-                //"(?=.*[A-Z])" +         //at least 1 upper case letter
-                "(?=.*[a-zA-Z])" +      //any letter
-                "(?=.*[@#$%^&+=])" +    //at least 1 special character
-                "(?=\\S+$)" +           //no white spaces
-                ".{4,}" +               //at least 4 characters
-                "$";
-
         if (val.isEmpty()) {
             password.setError("Field cannot be empty");
-            return false;
-        } else if (!val.matches(passwordVal)) {
-            password.setError("Password is too weak");
             return false;
         } else {
             password.setError(null);
@@ -153,8 +142,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                 }
                 else{
-                    String message="an error occurred ease try again later";
-                    Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        Toast.makeText(LoginActivity.this, jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    };
                 }
 
             }
