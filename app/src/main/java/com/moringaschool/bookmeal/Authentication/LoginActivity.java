@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.moringaschool.bookmeal.Admin.AdminMainActivity;
 import com.moringaschool.bookmeal.ApiClient;
 import com.moringaschool.bookmeal.Data;
 import com.moringaschool.bookmeal.LoginRequest;
@@ -144,7 +145,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                     //if the logged in user is an admin user
                     else{
-
+                        String message="Welcome "+username;
+                        Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(LoginActivity.this, AdminMainActivity.class)
+                                .putExtra("data", (Serializable) data));
+                        finish();
                     }
                 }
                 else{

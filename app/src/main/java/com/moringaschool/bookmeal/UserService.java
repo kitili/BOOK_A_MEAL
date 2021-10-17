@@ -12,5 +12,8 @@ public interface UserService {
     @POST ("api/users/register/")
     Call<RegisterResponse> registerUser (@Body RegisterRequest registerRequest);
 
+    @POST ("api/users/change-password-request/")
+    Call<ResetPasswordRequest> resetPassword (@Body ResetPasswordRequest resetPassword);
+
 
 }

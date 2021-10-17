@@ -8,8 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.moringaschool.bookmeal.ApiClient;
 import com.moringaschool.bookmeal.R;
+import com.moringaschool.bookmeal.RegisterRequest;
+import com.moringaschool.bookmeal.RegisterResponse;
+import com.moringaschool.bookmeal.ResetPasswordRequest;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ForgotPasswordActivity extends AppCompatActivity implements View.OnClickListener{
     Button login,reset;
@@ -54,12 +63,20 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
             if (!validateEmail()) {
                 return;
             }
+            ResetPasswordRequest resetPasswordRequest=new ResetPasswordRequest();
+            resetPasswordRequest.setEmail(email.getText().toString());
+            resetPassword(resetPasswordRequest);
 
         }
         if (view == backhome) {
             onBackPressed();
 
         }
+
+    }
+
+    private void resetPassword(ResetPasswordRequest resetPasswordRequest) {
+        Call<ResetPasswordRequest> resetPasswordRequestCall= ApiClient.getService().resetPassword(resetPasswordRequest);
 
     }
 }
