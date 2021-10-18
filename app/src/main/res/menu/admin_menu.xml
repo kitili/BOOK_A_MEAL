@@ -22,12 +22,6 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/nav_login"
-                    android:title="Login"></item>
-                <item
-                    android:id="@+id/nav_register"
-                    android:title="Register"></item>
-                <item
                     android:id="@+id/nav_profile"
                     android:title="Profile"></item>
                 <item
