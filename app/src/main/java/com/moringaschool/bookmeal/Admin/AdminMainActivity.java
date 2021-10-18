@@ -30,6 +30,17 @@ public class AdminMainActivity extends AppCompatActivity implements NavigationVi
     NavigationView navigationView;
     Toolbar toolbar;
     Data data;
+    //shared preference
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Username = "usernameKey";
+    public static final String AccessToken = "access_token";
+    public static final String RefreshToken = "refresh_token";
+    public static final String Email = "emailKey";
+    public static final String Id = "idKey";
+    public static final String FirstName = "first_name_key";
+    public static final String OtherName = "other_name_key";
+    public static final String UserImage = "UserImageKey";
+    SharedPreferences sharedpreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +67,30 @@ public class AdminMainActivity extends AppCompatActivity implements NavigationVi
         if(intent.getExtras()!=null) {
             data= (Data) getIntent().getSerializableExtra("data");
             Tokens token=data.getTokens();}
+        data= (Data) getIntent().getSerializableExtra("data");
+        Tokens token=data.getTokens();
+        String logged_access_token=token.getAccess();
+        String logged_refresh_token=token.getRefresh();
+        String logged_email=data.getEmail();
+        String logged_username=data.getUsername();
+        String logged_id=data.getId();
+        String logged_first_name= (String) data.getFirstName();
+        String logged_other_name= (String) data.getOtherName();
+        String logged_userImage=data.getUserImage();
+
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(Id, logged_id);
+        editor.putString(Username, logged_username);
+        editor.putString(Email, logged_email);
+        editor.putString(AccessToken, logged_access_token);
+        editor.putString(RefreshToken, logged_refresh_token);
+        editor.putString(FirstName, logged_first_name);
+        editor.putString(OtherName, logged_other_name);
+        editor.putString(UserImage, logged_userImage);
+        editor.commit();
     }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
