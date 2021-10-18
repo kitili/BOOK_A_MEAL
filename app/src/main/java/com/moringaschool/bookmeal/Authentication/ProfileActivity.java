@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -13,16 +14,20 @@ import com.moringaschool.bookmeal.R;
 import com.moringaschool.bookmeal.Tokens;
 import com.squareup.picasso.Picasso;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 Data data;
-ImageView profile_image;
+ImageView profile_image, backhome;
 EditText profile_first_name,profile_other_name,profile_username,profile_email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         //get the login details
+        backhome=findViewById(R.id.back_btn);
+        backhome.setOnClickListener(this);
         Intent intent = getIntent();
+        backhome=findViewById(R.id.back_btn);
+        backhome.setOnClickListener(this);
         if(intent.getExtras()!=null) {
             //hooks
             profile_image=findViewById(R.id.profile_photo);
@@ -53,5 +58,14 @@ EditText profile_first_name,profile_other_name,profile_username,profile_email;
             //redirect to login
 
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == backhome) {
+            onBackPressed();
+
+        }
+
     }
 }

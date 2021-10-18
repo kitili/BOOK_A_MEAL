@@ -66,7 +66,7 @@
                     android:background="@color/white"
                     android:text="Profile"
                     android:textColor="@color/orange"
-                    android:textSize="22sp"></TextView>
+                    android:textSize="22sp" />
 
             </LinearLayout>
         </LinearLayout>

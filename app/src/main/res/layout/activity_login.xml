@@ -63,15 +63,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp">
+
         <TextView
             android:id="@+id/sloganName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/actor"
             android:text="@string/login_in_to_continue"
-            android:layout_marginTop="10dp"
-            android:textSize="18dp"/>
+            android:textColor="#000"
+            android:textSize="18dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -118,22 +119,23 @@
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/forgot_password"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/button_orange_borderadius"
-            android:textColor="#fff"
-            android:layout_below="@+id/forgot_password"
-            android:text="@string/login" />
+            android:text="@string/login"
+            android:textColor="#fff" />
+
         <Button
             android:id="@+id/back_register"
             android:layout_width="match_parent"
-            android:layout_below="@+id/login"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:text="@string/don_t_have_an_account_register"
+            android:layout_below="@+id/login"
             android:layout_gravity="center"
+            android:background="@android:color/transparent"
             android:elevation="0dp"
-            android:textColor="#FA4A0C"/>
+            android:text="@string/don_t_have_an_account_register"
+            android:textColor="#FA4A0C" />
 
     </RelativeLayout>
 
