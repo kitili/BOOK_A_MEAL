@@ -11,9 +11,6 @@
             android:id="@+id/nav_admin_users"
             android:title="Users"></item>
         <item
-            android:id="@+id/nav_orders"
-            android:title="Today's Orders"></item>
-        <item
             android:id="@+id/nav_history"
             android:title="Order History"></item>
     </group>
