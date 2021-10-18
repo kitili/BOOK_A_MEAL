@@ -40,7 +40,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //initializing variables
     Button toRegister, login,forgot_password;
     TextInputLayout email,password;
-    ProgressBar progressBar;
     ProgressDialog progressDialog;
 
 
@@ -106,9 +105,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //set content
             progressDialog.setContentView(R.layout.progress_dialog);
             //set transparent bg
-            progressDialog.getWindow().setBackgroundDrawableResource(
-                    android.R.color.transparent
-            );
+            progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            //login
             LoginRequest loginRequest=new LoginRequest();
             loginRequest.setEmail(email.getEditText().getText().toString());
             loginRequest.setPassword(password.getEditText().getText().toString());

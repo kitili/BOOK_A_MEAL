@@ -2,6 +2,7 @@ package com.moringaschool.bookmeal.Authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 Button toLogin,toRegister;
 ImageView backhome;
 TextInputLayout fullName,email,password,confirmPassword;
+ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,6 +149,15 @@ TextInputLayout fullName,email,password,confirmPassword;
            if (!validateName() | !validatePassword()  | !validateEmail() | !validateName()) {
                return;
             }
+            //initializing progress dialog
+            progressDialog=new ProgressDialog(RegisterActivity.this);
+            //show dialog
+            progressDialog.show();
+            //set content
+            progressDialog.setContentView(R.layout.progress_dialog);
+            //set transparent bg
+            progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            //register
             RegisterRequest registerRequest=new RegisterRequest();
             registerRequest.setEmail(email.getEditText().getText().toString());
             registerRequest.setUsername(fullName.getEditText().getText().toString());
