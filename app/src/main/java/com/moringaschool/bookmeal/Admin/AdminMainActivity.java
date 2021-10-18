@@ -16,8 +16,11 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.moringaschool.bookmeal.Authentication.LoginActivity;
+import com.moringaschool.bookmeal.Authentication.ProfileActivity;
 import com.moringaschool.bookmeal.Authentication.RegisterActivity;
+import com.moringaschool.bookmeal.Data;
 import com.moringaschool.bookmeal.R;
+import com.moringaschool.bookmeal.Tokens;
 import com.moringaschool.bookmeal.UI.MainActivity;
 import com.moringaschool.bookmeal.UI.OrderActivity;
 import com.moringaschool.bookmeal.UI.OrderHistoryActivity;
@@ -26,6 +29,7 @@ public class AdminMainActivity extends AppCompatActivity implements NavigationVi
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    Data data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +51,11 @@ public class AdminMainActivity extends AppCompatActivity implements NavigationVi
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
+        //get the login details
+        Intent intent = getIntent();
+        if(intent.getExtras()!=null) {
+            data= (Data) getIntent().getSerializableExtra("data");
+            Tokens token=data.getTokens();}
     }
 
     @Override
@@ -77,7 +86,8 @@ public class AdminMainActivity extends AppCompatActivity implements NavigationVi
                 startActivity(intent);
                 break;
             case R.id.nav_profile:
-                intent = new Intent(AdminMainActivity.this, RegisterActivity.class);
+                intent = new Intent(AdminMainActivity.this, ProfileActivity.class);
+                intent.putExtra("data", data);
                 startActivity(intent);
                 break;
 
