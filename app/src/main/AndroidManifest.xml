@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookMeal">
         <activity
+            android:name=".Authentication.EditProfileActivity"
+            android:exported="true" />
+        <activity
             android:name=".Authentication.ProfileActivity"
             android:exported="true" />
         <activity
