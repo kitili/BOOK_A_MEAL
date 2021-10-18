@@ -32,6 +32,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.moringaschool.bookmeal.Authentication.LoginActivity;
+import com.moringaschool.bookmeal.Authentication.ProfileActivity;
 import com.moringaschool.bookmeal.Authentication.RegisterActivity;
 import com.moringaschool.bookmeal.Data;
 import com.moringaschool.bookmeal.LoginResponse;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FoodAdapter.RecyclerViewClickListener listener;
     TextInputEditText food_search;
     Button order;
+    Data data;
     //shared preference
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String Username = "usernameKey";
@@ -97,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //get the login details
         Intent intent = getIntent();
         if(intent.getExtras()!=null) {
-            Data data= (Data) getIntent().getSerializableExtra("data");
+            data= (Data) getIntent().getSerializableExtra("data");
             Tokens token=data.getTokens();
 
             String logged_access_token=token.getAccess();
@@ -230,7 +232,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_profile:
-                intent = new Intent(MainActivity.this, RegisterActivity.class);
+                intent = new Intent(MainActivity.this, ProfileActivity.class);
+                intent.putExtra("data", data);
                 startActivity(intent);
                 break;
             case R.id.nav_contact:
