@@ -2,6 +2,7 @@ package com.moringaschool.bookmeal.Authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -35,9 +37,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+    //initializing variables
     Button toRegister, login,forgot_password;
-    TextInputLayout email, password;
-    ImageView backhome;
+    TextInputLayout email,password;
+    ProgressBar progressBar;
+    ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         forgot_password.setOnClickListener(this);
         toRegister.setOnClickListener(this);
         login.setOnClickListener(this);
-        backhome=findViewById(R.id.back_btn);
-        backhome.setOnClickListener(this);
+
     }
 
     public boolean validateEmail() {
@@ -95,6 +99,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if (!validatePassword() | !validateEmail()) {
                   return;
             }
+            //initializing progress dialog
+            progressDialog=new ProgressDialog(LoginActivity.this);
+            //show dialog
+            progressDialog.show();
+            //set content
+            progressDialog.setContentView(R.layout.progress_dialog);
+            //set transparent bg
+            progressDialog.getWindow().setBackgroundDrawableResource(
+                    android.R.color.transparent
+            );
             LoginRequest loginRequest=new LoginRequest();
             loginRequest.setEmail(email.getEditText().getText().toString());
             loginRequest.setPassword(password.getEditText().getText().toString());
@@ -106,12 +120,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
             startActivity(intent);
         }
-        if (view == backhome) {
-            onBackPressed();
 
-        }
     }
 
+    public void onBackPressed(){
+        //dismiss progress dialog
+        progressDialog.dismiss();
+    }
     private void loginUser(LoginRequest loginRequest) {
         Call<LoginResponse> loginResponseCall= ApiClient.getService().loginUser(loginRequest);
         loginResponseCall.enqueue(new Callback<LoginResponse>() {

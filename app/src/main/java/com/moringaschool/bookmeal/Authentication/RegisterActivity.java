@@ -33,8 +33,7 @@ TextInputLayout fullName,email,password,confirmPassword;
         toLogin=findViewById(R.id.backLogin);
         toRegister.setOnClickListener(this);
         toLogin.setOnClickListener(this);
-        backhome=findViewById(R.id.back_btn);
-        backhome.setOnClickListener(this);
+
 
         fullName =findViewById(R.id.fullName);
         email = findViewById(R.id.email);
@@ -160,10 +159,7 @@ TextInputLayout fullName,email,password,confirmPassword;
             startActivity(intent);
 
         }
-        if (view == backhome) {
-            onBackPressed();
 
-        }
 
     }
 }
