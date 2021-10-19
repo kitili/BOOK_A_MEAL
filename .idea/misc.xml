@@ -30,12 +30,15 @@
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_users_list.xml" value="0.1765625" />
+        <entry key="app/src/main/res/layout/activity_view_menu.xml" value="0.16944444444444445" />
         <entry key="app/src/main/res/layout/container_bg.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/header.xml" value="0.1765625" />
         <entry key="app/src/main/res/layout/item_food.xml" value="0.26512968299711814" />
         <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.17083333333333334" />
+        <entry key="app/src/main/res/layout/r_list_menu_item.xml" value="0.1375" />
         <entry key="app/src/main/res/menu/admin_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/xml/network_security_config.xml" value="0.3333333333333333" />
       </map>
     </option>
   </component>

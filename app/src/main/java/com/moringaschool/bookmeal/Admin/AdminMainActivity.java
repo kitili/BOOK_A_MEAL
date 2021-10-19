@@ -102,6 +102,10 @@ public class AdminMainActivity extends AppCompatActivity implements NavigationVi
                 intent = new Intent(AdminMainActivity.this, AddFoodItemActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_admin_view_menu:
+                intent = new Intent(AdminMainActivity.this, ViewMenuActivity.class);
+                startActivity(intent);
+                break;
             case R.id.nav_admin_users:
                 intent = new Intent(AdminMainActivity.this, UsersListActivity.class);
                 startActivity(intent);

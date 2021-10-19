@@ -1,12 +1,16 @@
 package com.moringaschool.bookmeal;
 
 
+import com.moringaschool.bookmeal.Model.Menu;
+
 import java.io.File;
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
@@ -46,6 +50,9 @@ public interface UserService {
                                   @Part("description") RequestBody description,
                                   @Part MultipartBody.Part menu_image,
                                   @Header("Authorization")  String token);
+
+    @GET("https://bookameal.herokuapp.com/api/menus/items/")
+    Call <List<Menu>>menuResponse (@Header("Authorization")  String token);
 
 
 

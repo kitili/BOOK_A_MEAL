@@ -8,6 +8,9 @@
             android:id="@+id/nav_admin_create_menu"
             android:title="Create Menu"></item>
         <item
+            android:id="@+id/nav_admin_view_menu"
+            android:title="View Menu"></item>
+        <item
             android:id="@+id/nav_admin_users"
             android:title="Users"></item>
         <item

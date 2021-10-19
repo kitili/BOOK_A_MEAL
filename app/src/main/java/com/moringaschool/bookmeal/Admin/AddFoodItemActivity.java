@@ -166,7 +166,7 @@ public class AddFoodItemActivity extends AppCompatActivity implements View.OnCli
             public void onResponse(Call<AddMenuResponse> call, Response<AddMenuResponse> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Menu Added Successfully...", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(AddFoodItemActivity.this,AdminMainActivity.class));
+                    startActivity(new Intent(AddFoodItemActivity.this,ViewMenuActivity.class));
                 }
                 else {
                     try {
