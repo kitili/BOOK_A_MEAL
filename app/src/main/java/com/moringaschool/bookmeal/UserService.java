@@ -8,8 +8,10 @@ import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -55,9 +57,8 @@ public interface UserService {
     Call <List<Menu>>menuResponse (@Header("Authorization")  String token);
 
 
-
-//    @POST ("api/users/change-password-request/")
-//    Call<ResetPasswordRequest> resetPassword (@Body ResetPasswordRequest resetPassword, @Header("Authorization") String authToken);
-
+    @DELETE("https://bookameal.herokuapp.com/api/menus/item/{menu_id}/delete/")
+    Call<Void> deleteMenu (@Header("Authorization")  String token,
+                          @Path("menu_id") String menu_id);
 
 }

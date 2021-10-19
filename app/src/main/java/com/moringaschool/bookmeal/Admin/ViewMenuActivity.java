@@ -15,6 +15,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,18 +44,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ViewMenuActivity extends AppCompatActivity {
+public class ViewMenuActivity extends AppCompatActivity implements View.OnClickListener{
     TextView textViewResult;
     String token;
     RecyclerView mRecyclerView;
     RecyclerView rvFood;
     MenuAdapter menuAdapter;
     List<Menu>menuList;
-    FoodAdapter.RecyclerViewClickListener listener;
     TextInputEditText food_search;
     ProgressBar mProgressBar;
     SharedPreferences sharedpreferences;
     TextView mErrorTextView;
+    MenuAdapter.RecyclerViewClickListener listener;
+    ImageView  backhome;
 
 
     @Override
@@ -62,12 +64,27 @@ public class ViewMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_menu);
         // mRecyclerView=findViewById(R.id.)
-        textViewResult = findViewById(R.id.text_view_result);
-        mErrorTextView=findViewById(R.id.errorTextView);
+       // textViewResult = findViewById(R.id.text_view_result);
+       // mErrorTextView=findViewById(R.id.errorTextView);
         rvFood=findViewById(R.id.foodlist);
+        backhome=findViewById(R.id.back_btn);
+        backhome.setOnClickListener(this);
        // mProgressBar=findViewById(R.id.progressBar);
         menuList=new ArrayList<>();
         setMenuInfo();
+
+
+    }
+    private void filter(String text){
+        ArrayList<Menu> filteredList=new ArrayList<>();
+        for(Menu item:menuList){
+            if(item.getName().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(item);
+
+            }
+
+        }
+        menuAdapter.filterList(filteredList);
     }
 
     private void setMenuInfo() {
@@ -81,7 +98,8 @@ public class ViewMenuActivity extends AppCompatActivity {
             public void onResponse(Call<List<Menu>> call, Response<List<Menu>> response) {
                 if(response.isSuccessful()) {
                     menuList  = response.body();
-                    MenuAdapter menuAdapter = new MenuAdapter((ArrayList<Menu>) menuList);
+                    setOnclickListener();
+                    MenuAdapter menuAdapter = new MenuAdapter((ArrayList<Menu>) menuList,listener);
                     rvFood.setAdapter(menuAdapter);
                     RecyclerView.LayoutManager layoutManager =
                             new LinearLayoutManager(ViewMenuActivity.this);
@@ -110,43 +128,29 @@ public class ViewMenuActivity extends AppCompatActivity {
         });
     }
 
-            private void filter(String text) {
-        List<Menu> filteredList = new ArrayList<>();
-        for (Menu item : menuList) {
-            if (item.getName().toLowerCase().contains(text.toLowerCase())) {
-                filteredList.add(item);
 
-            }
-
-        }
-        MenuAdapter.filterList(filteredList);
-    }
 
     private void SetupFoodAdapter() {
         setOnclickListener();
     }
 
     private void setOnclickListener() {
-        //listener = new MenuAdapter.RecyclerViewClickListener() {
-//            @Override
-//            public void onClick(View v, int position) {
-//                Intent intent = new Intent(getApplicationContext(), FoodDetailsActivity.class);
-//                intent.putExtra("name", menuList.get(position).getName());
-//                intent.putExtra("price", menuList.get(position).getPrice());
-//                intent.putExtra("description", menuList.get(position).getDescription());
-//                startActivity(intent);
-//            }
-//        };
+        listener = new MenuAdapter.RecyclerViewClickListener() {
+
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent = new Intent(getApplicationContext(), FoodDetailsActivity.class);
+                intent.putExtra("id",menuList.get(position).getId());
+                intent.putExtra("name", menuList.get(position).getName());
+                intent.putExtra("price", menuList.get(position).getPrice());
+                intent.putExtra("description", menuList.get(position).getDescription());
+                startActivity(intent);
+            }
+
+            ;
+        };
     }
 
-
-
-    //set
-    private void initViews() {
-        rvFood = findViewById(R.id.foodlist);
-        rvFood.setLayoutManager(new LinearLayoutManager(this));
-        rvFood.setHasFixedSize(true);
-    }
 
 
     private void showFailureMessage() {
@@ -167,4 +171,12 @@ public class ViewMenuActivity extends AppCompatActivity {
         mProgressBar.setVisibility(View.GONE);
     }
 
+    @Override
+    public void onClick(View view) {
+        if (view == backhome) {
+            onBackPressed();
+
+        }
+
+    }
 }

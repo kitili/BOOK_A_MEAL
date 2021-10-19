@@ -60,7 +60,7 @@ public class  FoodAdapter extends RecyclerView.Adapter<FoodAdapter.foodviewholde
     public int getItemCount() {
         return mdata.size();
     }
-    public void filterList(List<Food> fiteredList){
+    public  void filterList(List<Food> fiteredList){
         mdata=fiteredList;
         notifyDataSetChanged();
     }

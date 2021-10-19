@@ -189,6 +189,10 @@ public class AddFoodItemActivity extends AppCompatActivity implements View.OnCli
     }
     @Override
     public void onClick(View view) {
+        if (view == backhome) {
+            onBackPressed();
+
+        }
             //open file chooser
         if(view == upload_image){
             Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
