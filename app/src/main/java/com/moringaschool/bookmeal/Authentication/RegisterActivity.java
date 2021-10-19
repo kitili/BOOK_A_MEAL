@@ -149,7 +149,9 @@ ProgressDialog progressDialog;
            if (!validateName() | !validatePassword()  | !validateEmail() | !validateName()) {
                return;
             }
-            //initializing progress dialog
+
+            //register
+            RegisterRequest registerRequest=new RegisterRequest();   //initializing progress dialog
             progressDialog=new ProgressDialog(RegisterActivity.this);
             //show dialog
             progressDialog.show();
@@ -157,8 +159,6 @@ ProgressDialog progressDialog;
             progressDialog.setContentView(R.layout.progress_dialog);
             //set transparent bg
             progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-            //register
-            RegisterRequest registerRequest=new RegisterRequest();
             registerRequest.setEmail(email.getEditText().getText().toString());
             registerRequest.setUsername(fullName.getEditText().getText().toString());
             registerRequest.setPassword(password.getEditText().getText().toString());
