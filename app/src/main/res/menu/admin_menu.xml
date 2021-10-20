@@ -15,7 +15,7 @@
             android:title="Users"></item>
         <item
             android:id="@+id/nav_history"
-            android:title="Order History"></item>
+            android:title="Orders"></item>
     </group>
 
     <item android:title="Profile">
@@ -23,7 +23,10 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_profile"
-                    android:title="Profile"></item>
+                    android:title="View Profile"></item>
+                <item
+                    android:id="@+id/nav_edit_profile"
+                    android:title="Edit Profile"></item>
                 <item
                     android:id="@+id/nav_logout"
                     android:title="Logout"></item>

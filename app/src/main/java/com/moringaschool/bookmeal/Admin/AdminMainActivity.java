@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.moringaschool.bookmeal.Authentication.EditProfileActivity;
 import com.moringaschool.bookmeal.Authentication.LoginActivity;
 import com.moringaschool.bookmeal.Authentication.ProfileActivity;
 import com.moringaschool.bookmeal.Authentication.RegisterActivity;
@@ -125,6 +126,11 @@ public class AdminMainActivity extends AppCompatActivity implements NavigationVi
                 break;
             case R.id.nav_history:
                 intent = new Intent(AdminMainActivity.this, OrderListActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_edit_profile:
+                intent = new Intent(AdminMainActivity.this, EditProfileActivity.class);
+                intent.putExtra("data", data);
                 startActivity(intent);
                 break;
             case R.id.nav_profile:
