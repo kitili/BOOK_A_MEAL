@@ -120,7 +120,7 @@ public class AdminMainActivity extends AppCompatActivity implements NavigationVi
                 startActivity(intent);
                 break;
             case R.id.nav_history:
-                intent = new Intent(AdminMainActivity.this, RegisterActivity.class);
+                intent = new Intent(AdminMainActivity.this, OrderListActivity.class);
                 startActivity(intent);
                 break;
             case R.id.nav_profile:

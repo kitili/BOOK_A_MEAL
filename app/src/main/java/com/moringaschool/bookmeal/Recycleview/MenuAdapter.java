@@ -89,8 +89,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         holder.name.setText(name);
         holder.price.setText(price_string);
         holder.id.setText(ids);
-       // holder.imageFood.setImageURI(Uri.parse(imageURL));
-        String TAG="MainActivity";
        Picasso.get().load(imageURL).into(holder.imageFood);
 
 
