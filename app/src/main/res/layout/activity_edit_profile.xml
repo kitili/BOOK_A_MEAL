@@ -76,12 +76,28 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/profile_photo"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_gravity="center"
+                android:src="@drawable/images"
+                android:layout_gravity="left"
                 />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/profile_photo"
+                    android:layout_marginStart="150dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_orange_borderadius"
+                    android:text="Change Image"
+                    android:textColor="#fff" />
+            </RelativeLayout>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

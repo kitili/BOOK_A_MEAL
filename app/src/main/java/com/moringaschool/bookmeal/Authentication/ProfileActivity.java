@@ -24,7 +24,7 @@ Data data;
 ImageView profile_image, backhome;
 Button btn_edit_profile;
 EditText profile_first_name,profile_other_name,profile_username,profile_email;
-String token,user_id,other_name,first_name,username,email;
+String token,user_id,other_name,first_name,username,email,user_image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +51,7 @@ String token,user_id,other_name,first_name,username,email;
         other_name=sharedPreferences.getString("other_name_key","");
         username=sharedPreferences.getString("usernameKey","");
         email=sharedPreferences.getString("emailKey","");
+        user_image=sharedPreferences.getString("UserImageKey","");
 
 //set the obtained data to respective text on the view
        // Picasso.get().load(image).into(profile_image);
@@ -58,6 +59,10 @@ String token,user_id,other_name,first_name,username,email;
         profile_other_name.setText(other_name);
         profile_email.setText(email);
         profile_username.setText(username);
+        String TAG="this is the tag";
+        Log.e(TAG,"msg==================>"+user_image);
+        Picasso.get().load(user_image).into(profile_image);
+       // Picasso.get().load("https://res.cloudinary.com/dxouhnqpf/image/upload/v1/images/menus/icons8-cute-pumpkin-30_neiad6").into(profile_image);
 
     }
 
