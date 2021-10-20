@@ -109,7 +109,7 @@ public class AddFoodItemActivity extends AppCompatActivity implements View.OnCli
             super.onActivityResult(requestCode, resultCode, data);
             if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
                 //the image URI
-                selectedImage = data.getData();
+
                 Picasso.get().load(selectedImage).into(menu_image);
 
 
@@ -153,10 +153,6 @@ public class AddFoodItemActivity extends AppCompatActivity implements View.OnCli
 
 
         //creating a call and calling the upload image method
-        //names=name.getEditText().getText().toString();
-
-        String TAG="MainActivity";
-        Log.e(TAG,"============================> token: "+token);
 
         Call<AddMenuResponse> call = ApiClient.getService().addMenu(requestFile, names,prices,descriptions,partImage,token);
 

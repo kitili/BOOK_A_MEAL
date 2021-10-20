@@ -81,7 +81,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     public void onBindViewHolder(@NonNull MenuAdapter.MenuViewHolder holder, int position) {
         //binding food data here
         String name=menuList.get(position).getName();
-        double price=menuList.get(position).getPrice();
+        Integer price=menuList.get(position).getPrice();
         String description=menuList.get(position).getDescription();
         String imageURL=menuList.get(position).getMenuImage();
         String price_string=String.valueOf(price);
@@ -91,7 +91,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         holder.id.setText(ids);
        // holder.imageFood.setImageURI(Uri.parse(imageURL));
         String TAG="MainActivity";
-        Log.e(TAG,"msg====================================>"+imageURL);
        Picasso.get().load(imageURL).into(holder.imageFood);
 
 

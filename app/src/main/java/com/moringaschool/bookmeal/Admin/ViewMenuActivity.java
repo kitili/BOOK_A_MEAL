@@ -144,6 +144,7 @@ public class ViewMenuActivity extends AppCompatActivity implements View.OnClickL
                 intent.putExtra("name", menuList.get(position).getName());
                 intent.putExtra("price", menuList.get(position).getPrice());
                 intent.putExtra("description", menuList.get(position).getDescription());
+                intent.putExtra("imageURL", menuList.get(position).getMenuImage());
                 startActivity(intent);
             }
 

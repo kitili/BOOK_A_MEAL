@@ -9,17 +9,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.moringaschool.bookmeal.Admin.EditFoodItemActivity;
 import com.moringaschool.bookmeal.Admin.ViewMenuActivity;
 import com.moringaschool.bookmeal.ApiClient;
 import com.moringaschool.bookmeal.Authentication.LoginActivity;
 import com.moringaschool.bookmeal.LoginResponse;
 import com.moringaschool.bookmeal.R;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -36,8 +39,8 @@ public class FoodDetailsActivity extends AppCompatActivity implements View.OnCli
     String food_description;
     double food_price;
     String food_prices;
-    String food_id,token;
-    Button delete;
+    String food_id,token,food_image;
+    Button delete,edit,make;
     ProgressDialog progressDialog;
 
 
@@ -53,13 +56,20 @@ public class FoodDetailsActivity extends AppCompatActivity implements View.OnCli
         backhome.setOnClickListener(this);
         delete=findViewById(R.id.item_food_delete_btn);
         delete.setOnClickListener(this);
+        edit=findViewById(R.id.item_food_edit_btn);
+        edit.setOnClickListener(this);
+        make=findViewById(R.id.item_food_make_btn);
+        make.setOnClickListener(this);
         Bundle extras=getIntent().getExtras();
         if(extras !=null){
             food_name=extras.getString("name");
-            food_price=extras.getDouble("price");
-            food_prices= Double.toString(food_price);
+            food_price=extras.getInt("price");
+            food_prices= Integer.toString((int) food_price);
+            String TAG="FoodDetails";
+            Log.e(TAG,"mmmmm==============================>"+food_prices);
             food_description=extras.getString("description");
             food_id=extras.getString("id");
+            food_image=extras.getString("imageURL");
         }
         else{
 
@@ -67,12 +77,53 @@ public class FoodDetailsActivity extends AppCompatActivity implements View.OnCli
         name.setText(food_name);
         price.setText(food_prices);
         description.setText(food_description);
+        Picasso.get().load(food_image).into(imageview);
     }
 
     @Override
     public void onClick(View view) {
         if (view == backhome) {
             onBackPressed();
+
+        }
+        if(view==make){
+            //initializing progress dialog
+            progressDialog=new ProgressDialog(FoodDetailsActivity.this);
+            //show dialog
+            progressDialog.show();
+            //set content
+            progressDialog.setContentView(R.layout.progress_dialog);
+            //set transparent bg
+            progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            SharedPreferences sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+            token = sharedPreferences.getString("access_token", "");
+            token = "Bearer " + token;
+            Call<Void> setmenuCall= ApiClient.getService().setMenu(token,food_id);
+            setmenuCall.enqueue(new Callback<Void>() {
+
+                @Override
+                public void onResponse(Call<Void> setmenuCall, Response<Void> response) {
+                    Toast.makeText(FoodDetailsActivity.this,"The Menu was successfully set as today's menu item",Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(FoodDetailsActivity.this, ViewMenuActivity.class));
+                    finish();
+
+                }
+
+                @Override
+                public void onFailure(Call<Void> setmenuCall, Throwable t) {
+                    String message=t.getLocalizedMessage();
+                    Toast.makeText(FoodDetailsActivity.this,message,Toast.LENGTH_LONG).show();
+                }
+            });
+
+        }
+        if(view==edit){
+            Intent i = new Intent(FoodDetailsActivity.this, EditFoodItemActivity.class);
+            i.putExtra("name", food_name);
+            i.putExtra("price", food_prices);
+            i.putExtra("description", food_description);
+            i.putExtra("image", food_image);
+            startActivity(i);
 
         }
         if(view == delete){
@@ -84,7 +135,6 @@ public class FoodDetailsActivity extends AppCompatActivity implements View.OnCli
             progressDialog.setContentView(R.layout.progress_dialog);
             //set transparent bg
             progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
             SharedPreferences sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
             token = sharedPreferences.getString("access_token", "");
             token = "Bearer " + token;

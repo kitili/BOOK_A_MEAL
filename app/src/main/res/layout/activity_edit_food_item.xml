@@ -63,7 +63,7 @@
                     android:gravity="center"
                     android:fontFamily="@font/actor"
                     android:background="@color/white"
-                    android:text="Edit Food Item"
+                    android:text="Add Menu Item"
                     android:textColor="@color/orange"
                     android:textSize="18sp"/>
 
@@ -77,12 +77,12 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"/>
@@ -91,10 +91,11 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/price"
+                android:layout_marginTop="10dp"
                 android:hint="@string/price"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal">
@@ -104,17 +105,25 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/description"
+                android:layout_marginTop="10dp"
                 android:hint="@string/description"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textImeMultiLine">
-                </com.google.android.material.textfield.TextInputEditText>
+                    android:layout_height="47dp"
+                    android:id="@+id/description"
+                    android:inputType="textImeMultiLine"></com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
+            <ImageView
+                android:id="@+id/menu_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/images"/>
             <Button
                 android:id="@+id/upload_image"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -126,7 +135,7 @@
 
 
             <Button
-                android:id="@+id/toRegister"
+                android:id="@+id/edit_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

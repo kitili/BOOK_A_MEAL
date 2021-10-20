@@ -95,10 +95,41 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Delete"
+        android:background="@color/orange"
+        android:textAllCaps="false"
         android:fontFamily="@font/actor"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/item_food_desc"/>
 
+    <Button
+        android:id="@+id/item_food_edit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Edit"
+        android:background="#fac10c"
+        android:fontFamily="@font/actor"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_food_delete_btn"/>
+
+    <Button
+        android:id="@+id/item_food_make_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="false"
+        android:background="#eeeeee"
+        android:text="Make Today's Menu"
+        android:fontFamily="@font/actor"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_food_edit_btn"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

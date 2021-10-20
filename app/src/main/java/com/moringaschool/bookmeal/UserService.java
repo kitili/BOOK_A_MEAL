@@ -61,4 +61,18 @@ public interface UserService {
     Call<Void> deleteMenu (@Header("Authorization")  String token,
                           @Path("menu_id") String menu_id);
 
+    @GET("https://bookameal.herokuapp.com/api/menus/item/{menu_id}/set/")
+    Call<Void> setMenu (@Header("Authorization")  String token,
+                           @Path("menu_id") String menu_id);
+
+    @PUT("https://bookameal.herokuapp.com/api/menus/item/{menu_id}/edit/")
+    Call <List<Menu>>editMenuResponse (
+            @Part("image\"; filename=\"myfile.jpg\" ") RequestBody file,
+            @Part("name") RequestBody name,
+            @Part("price") RequestBody price,
+            @Part("description") RequestBody description,
+            @Part MultipartBody.Part menu_image,
+            @Header("Authorization")  String token
+    );
+
 }
