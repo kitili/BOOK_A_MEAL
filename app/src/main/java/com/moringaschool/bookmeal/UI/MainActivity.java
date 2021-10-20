@@ -56,32 +56,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
-        
+
         initViews();
         initmdataFood();
         SetupFoodAdapter();
     }
 
     private void SetupFoodAdapter() {
-        foodAdapter=new FoodAdapter(mdata);
+        foodAdapter = new FoodAdapter(mdata);
         rvFood.setAdapter(foodAdapter);
     }
 
     private void initmdataFood() {
         //for testing a ranfom array of food items
-        mdata=new ArrayList<>();
-        mdata.add(new Food(R.drawable.food_1));
+        mdata = new ArrayList<>();
+        mdata.add(new Food(R.drawable.food1));
         mdata.add(new Food(R.drawable.food_2));
-        mdata.add(new Food(R.drawable.food_3));
-        mdata.add(new Food(R.drawable.food_1));
+        mdata.add(new Food(R.drawable.food3));
+        mdata.add(new Food(R.drawable.food1));
         mdata.add(new Food(R.drawable.food_2));
-        mdata.add(new Food(R.drawable.food_3));
+        mdata.add(new Food(R.drawable.food3));
 
 
     }
 
     private void initViews() {
-        rvFood=findViewById(R.id.foodlist);
+        rvFood = findViewById(R.id.foodlist);
         rvFood.setLayoutManager(new LinearLayoutManager(this));
         rvFood.setHasFixedSize(true);
     }
@@ -134,7 +134,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.contact_form_title: {
@@ -143,4 +142,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
         return super.onOptionsItemSelected(item);
+    }
 }
