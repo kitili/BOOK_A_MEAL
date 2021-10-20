@@ -26,11 +26,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.moringaschool.bookmeal.Admin.ViewMenuActivity;
+import com.moringaschool.bookmeal.ApiClient;
 import com.moringaschool.bookmeal.Authentication.LoginActivity;
 import com.moringaschool.bookmeal.Authentication.ProfileActivity;
 import com.moringaschool.bookmeal.Authentication.RegisterActivity;
@@ -39,6 +43,8 @@ import com.moringaschool.bookmeal.LoginResponse;
 import com.moringaschool.bookmeal.Model.Food;
 import com.moringaschool.bookmeal.R;
 import com.moringaschool.bookmeal.Recycleview.FoodAdapter;
+import com.moringaschool.bookmeal.Recycleview.MenuAdapter;
+import com.moringaschool.bookmeal.Recycleview.MenuUserAdapter;
 import com.moringaschool.bookmeal.Recycleview.foodCallback;
 import com.moringaschool.bookmeal.Tokens;
 
@@ -51,19 +57,33 @@ import java.util.Locale;
 
 import androidx.core.util.Pair;
 
+import org.json.JSONObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    RecyclerView rvFood;
-    FoodAdapter foodAdapter;
-    List<Food> mdata;
-    FoodAdapter.RecyclerViewClickListener listener;
     TextInputEditText food_search;
     Button order;
+    TextView textViewResult;
+    String token;
+    RecyclerView mRecyclerView;
+    RecyclerView rvFood;
+    MenuUserAdapter menuAdapter;
+    List<com.moringaschool.bookmeal.Model.Menu> menuList;
+    ProgressBar mProgressBar;
+    SharedPreferences sharedpreferences;
+    TextView mErrorTextView;
     Data data;
+    MenuUserAdapter.RecyclerViewClickListener listener;
+
+
     //shared preference
-    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "usernameKey";
     public static final String AccessToken = "access_token";
     public static final String RefreshToken = "refresh_token";
@@ -72,8 +92,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static final String FirstName = "first_name_key";
     public static final String OtherName = "other_name_key";
     public static final String UserImage = "UserImageKey";
-    SharedPreferences sharedpreferences;
-
 
 
     @Override
@@ -102,18 +120,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //get the login details
         Intent intent = getIntent();
-        if(intent.getExtras()!=null) {
-            data= (Data) getIntent().getSerializableExtra("data");
-            Tokens token=data.getTokens();
+        if (intent.getExtras() != null) {
+            data = (Data) getIntent().getSerializableExtra("data");
+            Tokens token = data.getTokens();
 
-            String logged_access_token=token.getAccess();
-            String logged_refresh_token=token.getRefresh();
-            String logged_email=data.getEmail();
-            String logged_username=data.getUsername();
-            String logged_id=data.getId();
-            String logged_first_name= (String) data.getFirstName();
-            String logged_other_name= (String) data.getOtherName();
-            String logged_userImage=data.getUserImage();
+            String logged_access_token = token.getAccess();
+            String logged_refresh_token = token.getRefresh();
+            String logged_email = data.getEmail();
+            String logged_username = data.getUsername();
+            String logged_id = data.getId();
+            String logged_first_name = (String) data.getFirstName();
+            String logged_other_name = (String) data.getOtherName();
+            String logged_userImage = data.getUserImage();
 
             sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -129,81 +147,68 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         }
+        rvFood = findViewById(R.id.foodlist);
+        // mProgressBar=findViewById(R.id.progressBar);
+        menuList = new ArrayList<>();
+        setMenuInfo();
 
-        initViews();
-        initmdataFood();
-        SetupFoodAdapter();
-        food_search=findViewById(R.id.food_search1);
-        food_search.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                filter(editable.toString());
-
-            }
-        });
     }
-    private void filter(String text){
-        List<Food> filteredList=new ArrayList<>();
-        for(Food item:mdata){
-            if(item.getName().toLowerCase().contains(text.toLowerCase())){
+
+    private void filter(String text) {
+        ArrayList<com.moringaschool.bookmeal.Model.Menu> filteredList = new ArrayList<>();
+        for (com.moringaschool.bookmeal.Model.Menu item : menuList) {
+            if (item.getName().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(item);
 
             }
 
         }
-        foodAdapter.filterList(filteredList);
+        menuAdapter.filterList(filteredList);
     }
 
-    private void SetupFoodAdapter() {
-        setOnclickListener();
-        foodAdapter=new FoodAdapter(mdata,listener);
-        rvFood.setAdapter(foodAdapter);
-    }
-
-    private void setOnclickListener() {
-        listener=new FoodAdapter.RecyclerViewClickListener() {
+    private void setMenuInfo() {
+        SharedPreferences sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        token = sharedPreferences.getString("access_token", "");
+        token = "Bearer " + token;
+        Call<List<com.moringaschool.bookmeal.Model.Menu>> menuResponseCall = ApiClient.getService().menuResponse(token);
+        menuResponseCall.enqueue(new Callback<List<com.moringaschool.bookmeal.Model.Menu>>() {
 
             @Override
-            public void onClick(View v, int position) {
-                Intent intent=new Intent(getApplicationContext(),FoodDetailsActivity.class);
-                intent.putExtra("name",mdata.get(position).getName());
-                intent.putExtra("price",mdata.get(position).getPrice());
-                intent.putExtra("description",mdata.get(position).getDescription());
-                startActivity(intent);
+            public void onResponse(Call<List<com.moringaschool.bookmeal.Model.Menu>> call, Response<List<com.moringaschool.bookmeal.Model.Menu>> response) {
+                if (response.isSuccessful()) {
+                    menuList = response.body();
+                    setOnclickListener();
+                    MenuUserAdapter menuAdapter = new MenuUserAdapter((ArrayList<com.moringaschool.bookmeal.Model.Menu>) menuList, listener);
+                    rvFood.setAdapter(menuAdapter);
+                    RecyclerView.LayoutManager layoutManager =
+                            new LinearLayoutManager(MainActivity.this);
+                    rvFood.setLayoutManager(layoutManager);
+                    rvFood.setHasFixedSize(true);
+                    rvFood.setVisibility(View.VISIBLE);
+
+                    // Log.e(TAG,"===============>"+menuResponse);
+                } else {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        Toast.makeText(MainActivity.this, jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                    ;
+                }
+
             }
-        };
-    }
 
-    private void initmdataFood() {
-        //for testing a ranfom array of food items
-
-        mdata=new ArrayList<>();
-        mdata.add(new Food("Fish Salad","this is the description","this is the image",50.00, R.drawable.food_1));
-        mdata.add(new Food("Chicken Salad","this is the description","this is the image",50.0, R.drawable.food_1));
-        mdata.add(new Food("Beef Salad","this is the description","this is the image",50.0 ,R.drawable.food_1));
-        mdata.add(new Food("Chicken Salad","this is the description","this is the image",50.0, R.drawable.food_1));
-        mdata.add(new Food("Fish Salad","this is the description","this is the image",50.0, R.drawable.food_1));
-        mdata.add(new Food("Beef Salad","this is the description","this is the image", 50.0, R.drawable.food_1));
+            @Override
+            public void onFailure(Call<List<com.moringaschool.bookmeal.Model.Menu>> call, Throwable t) {
+                String message = t.getLocalizedMessage();
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
 
 
     }
 
-    //set
-    private void initViews() {
-        rvFood = findViewById(R.id.foodlist);
-        rvFood.setLayoutManager(new LinearLayoutManager(this));
-        rvFood.setHasFixedSize(true);
-    }
 
     @Override
     public void onBackPressed() {
@@ -250,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_contact:
-                intent = new Intent(MainActivity.this,contacts.class);
+                intent = new Intent(MainActivity.this, contacts.class);
                 startActivity(intent);
                 break;
 
@@ -258,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.putExtra(Intent.EXTRA_TEXT,
-                        "Hey check out my app at: https://play.google.com/store/apps/" );
+                        "Hey check out my app at: https://play.google.com/store/apps/");
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
 
@@ -267,4 +272,51 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    private void SetupFoodAdapter() {
+        setOnclickListener();
+    }
+
+    private void setOnclickListener() {
+        listener = new MenuUserAdapter.RecyclerViewClickListener(){
+
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent = new Intent(getApplicationContext(), FoodDetailsActivity.class);
+                intent.putExtra("id",menuList.get(position).getId());
+                intent.putExtra("name", menuList.get(position).getName());
+                intent.putExtra("price", menuList.get(position).getPrice());
+                intent.putExtra("description", menuList.get(position).getDescription());
+                intent.putExtra("imageURL", menuList.get(position).getMenuImage());
+                startActivity(intent);
+            }
+
+            ;
+        };
+    }
+
+
+
+    private void showFailureMessage() {
+//        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
+//        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showUnsuccessfulMessage() {
+//        mErrorTextView.setText("Something went wrong. Please try again later");
+//        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showRestaurants() {
+        mRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
+    }
+
+
+
+
 }
