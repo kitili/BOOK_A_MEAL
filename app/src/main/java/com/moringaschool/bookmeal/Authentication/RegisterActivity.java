@@ -2,19 +2,37 @@ package com.moringaschool.bookmeal.Authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.moringaschool.bookmeal.Admin.AdminMainActivity;
+import com.moringaschool.bookmeal.ApiClient;
 import com.moringaschool.bookmeal.R;
+import com.moringaschool.bookmeal.RegisterRequest;
+import com.moringaschool.bookmeal.RegisterResponse;
+
+import org.json.JSONObject;
+
+import java.io.Serializable;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 Button toLogin,toRegister;
 ImageView backhome;
-TextInputLayout fullName,email,phone,password,confirmPassword;
+TextInputLayout fullName,email,password,confirmPassword;
+ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,12 +41,10 @@ TextInputLayout fullName,email,phone,password,confirmPassword;
         toLogin=findViewById(R.id.backLogin);
         toRegister.setOnClickListener(this);
         toLogin.setOnClickListener(this);
-        backhome=findViewById(R.id.back_btn);
-        backhome.setOnClickListener(this);
+
 
         fullName =findViewById(R.id.fullName);
         email = findViewById(R.id.email);
-        phone = findViewById(R.id.phone);
         password = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirmPassword);
 
@@ -63,19 +79,7 @@ TextInputLayout fullName,email,phone,password,confirmPassword;
         }
 
     }
-    public boolean validatePhone(){
-        String val = phone.getEditText().getText().toString();
 
-        if (val.isEmpty()) {
-            phone.setError("Field cannot be empty");
-            return false;
-        } else {
-            phone.setError(null);
-            phone.setErrorEnabled(false);
-            return true;
-        }
-
-    }
     public boolean validatePassword(){
         String val = password.getEditText().getText().toString();
         String val2 = confirmPassword.getEditText().getText().toString();
@@ -100,7 +104,7 @@ TextInputLayout fullName,email,phone,password,confirmPassword;
             password.setError("Password is too weak");
             return false;
         }
-        else if(val != val2){
+        else if(!val.equals(val2)){
             password.setError("Password do not match");
             return false;
         }
@@ -112,13 +116,101 @@ TextInputLayout fullName,email,phone,password,confirmPassword;
         }
 
     }
+    public void registerUser(RegisterRequest registerRequest){
+        Call<RegisterResponse> registerResponseCall= ApiClient.getService().registerUser(registerRequest);
+        registerResponseCall.enqueue(new Callback<RegisterResponse>() {
+            @Override
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                if(response.isSuccessful()){
+                    String message="Registration successful";
+                    new AlertDialog.Builder(RegisterActivity.this)
+                            .setTitle("Login Successful")
+                            .setMessage(message)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                    finish();
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                    //Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
+                    //startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+
+                }  else{
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        String error_message=jObjError.getJSONObject("error").getString("message");
+                        new AlertDialog.Builder(RegisterActivity.this)
+                                .setTitle("Login Not Successful")
+                                .setMessage(error_message)
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(RegisterActivity.this,RegisterActivity.class));
+                                        finish();                                   }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                        //Toast.makeText(LoginActivity.this, jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        new AlertDialog.Builder(RegisterActivity.this)
+                                .setTitle("Registration Not Successful")
+                                .setMessage(e.getLocalizedMessage())
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(RegisterActivity.this,RegisterActivity.class));
+                                        finish();
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                        // Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    };
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                String message=t.getLocalizedMessage();
+                new AlertDialog.Builder(RegisterActivity.this)
+                        .setTitle("Registration Not Successful")
+                        .setMessage(message)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                                finish();                                   }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+               // Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+    }
 
     @Override
     public void onClick(View view) {
         if(view == toRegister){
-            if (!validateName() | !validatePassword() | !validatePhone() | !validateEmail() | !validateName()) {
-                return;
+           if (!validateName() | !validatePassword()  | !validateEmail() | !validateName()) {
+               return;
             }
+
+            //register
+            RegisterRequest registerRequest=new RegisterRequest();   //initializing progress dialog
+            progressDialog=new ProgressDialog(RegisterActivity.this);
+            //show dialog
+            progressDialog.show();
+            //set content
+            progressDialog.setContentView(R.layout.progress_dialog);
+            //set transparent bg
+            progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            registerRequest.setEmail(email.getEditText().getText().toString());
+            registerRequest.setUsername(fullName.getEditText().getText().toString());
+            registerRequest.setPassword(password.getEditText().getText().toString());
+            registerRequest.setPassword2(confirmPassword.getEditText().getText().toString());
+            registerUser(registerRequest);
 
         }
         if(view == toLogin){
@@ -126,10 +218,7 @@ TextInputLayout fullName,email,phone,password,confirmPassword;
             startActivity(intent);
 
         }
-        if (view == backhome) {
-            onBackPressed();
 
-        }
 
     }
 }

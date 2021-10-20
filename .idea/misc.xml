@@ -3,12 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/background_splash.xml" value="0.1787037037037037" />
+        <entry key="app/src/main/res/drawable/button_orange_borderadius.xml" value="0.18697916666666667" />
         <entry key="app/src/main/res/drawable/buttonradius.xml" value="0.17222222222222222" />
         <entry key="app/src/main/res/drawable/container_bg.xml" value="0.30092592592592593" />
+        <entry key="app/src/main/res/drawable/edittext_bg.xml" value="0.18697916666666667" />
+        <entry key="app/src/main/res/drawable/white_circle.xml" value="0.18697916666666667" />
         <entry key="app/src/main/res/layout/activity_add_food_item.xml" value="0.18958333333333333" />
         <entry key="app/src/main/res/layout/activity_add_todays_menu.xml" value="0.335" />
+<<<<<<< HEAD
         <entry key="app/src/main/res/layout/activity_contacts.xml" value="0.22" />
+=======
+        <entry key="app/src/main/res/layout/activity_admin_main.xml" value="0.33240997229916897" />
+>>>>>>> 34f864e760df90a29179d88b2fd42c041fe2dc55
         <entry key="app/src/main/res/layout/activity_edit_food_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.1984375" />
         <entry key="app/src/main/res/layout/activity_food_details.xml" value="0.2388888888888889" />
         <entry key="app/src/main/res/layout/activity_food_item_list.xml" value="0.1765625" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.1" />
@@ -21,13 +30,22 @@
         <entry key="app/src/main/res/layout/activity_order.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/activity_order_complete.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/activity_order_history.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_order_list.xml" value="0.1259259259259259" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_users_list.xml" value="0.1765625" />
+        <entry key="app/src/main/res/layout/activity_view_menu.xml" value="0.1" />
         <entry key="app/src/main/res/layout/container_bg.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/header.xml" value="0.1765625" />
         <entry key="app/src/main/res/layout/item_food.xml" value="0.26512968299711814" />
+        <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.17083333333333334" />
+        <entry key="app/src/main/res/layout/r_list_menu_item.xml" value="0.1375" />
+        <entry key="app/src/main/res/layout/r_list_orders_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/r_list_user_item.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/admin_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/xml/network_security_config.xml" value="0.3333333333333333" />
       </map>
     </option>
   </component>

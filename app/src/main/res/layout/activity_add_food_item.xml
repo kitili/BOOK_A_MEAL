@@ -63,7 +63,7 @@
                     android:gravity="center"
                     android:fontFamily="@font/actor"
                     android:background="@color/white"
-                    android:text="Add Food Item"
+                    android:text="Add Menu Item"
                     android:textColor="@color/orange"
                     android:textSize="18sp"/>
 
@@ -91,6 +91,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:id="@+id/price"
                 android:hint="@string/price"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -105,6 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/description"
+                android:layout_marginTop="10dp"
                 android:hint="@string/description"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
@@ -113,8 +115,15 @@
                     android:inputType="textImeMultiLine">
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
+            <ImageView
+                android:id="@+id/menu_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/images"/>
             <Button
                 android:id="@+id/upload_image"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -126,7 +135,7 @@
 
 
             <Button
-                android:id="@+id/toRegister"
+                android:id="@+id/add_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

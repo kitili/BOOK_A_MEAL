@@ -1,10 +1,16 @@
 package com.moringaschool.bookmeal.UI;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -16,49 +22,51 @@ import android.widget.TextView;
 import com.moringaschool.bookmeal.Authentication.RegisterActivity;
 import com.moringaschool.bookmeal.R;
 
-public class SplashScreenActivity extends AppCompatActivity implements View.OnClickListener {
-    Animation topAnim,bottomAnim;
-    ImageView image;
-    TextView logo;
-    Button getStarted;
-    private  static  int SPLASH_SCREEN=5000;
+public class SplashScreenActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_splash_screen);
-
-        //Animation
-        topAnim= AnimationUtils.loadAnimation(this,R.anim.top_animation);
-        bottomAnim= AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
-
-        //Hooks
-        image=findViewById(R.id.image_logo);
-        logo=findViewById(R.id.splach_hero_text);
-        getStarted=findViewById(R.id.getStartedButton);
-        image.setAnimation(topAnim);
-        logo.setAnimation(topAnim);
-        getStarted.setAnimation(bottomAnim);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        },SPLASH_SCREEN);
-
-
-    }
-
-    @Override
-    public void onClick(View view) {
-        if(view==getStarted){
-            Intent intent = new Intent(SplashScreenActivity.this, RegisterActivity.class);
-            startActivity(intent);
+        if(!isConnected(this)){
+            showCustomDialog();
         }
 
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+        finish();
+
     }
+
+    private void showCustomDialog() {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setMessage("please connect to the internet to proceed further")
+                .setCancelable(false)
+                .setPositiveButton("Connect", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(getApplicationContext(),NoConnectionActivity.class));
+                        finish();
+                    }
+                });
+    }
+
+    private boolean isConnected(SplashScreenActivity splashScreenActivity) {
+        ConnectivityManager connectivityManager=(ConnectivityManager) splashScreenActivity.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiConn=connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileConn=connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if((wifiConn !=null && wifiConn.isConnected()) || (mobileConn != null && mobileConn.isConnected())){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 }

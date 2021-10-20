@@ -2,20 +2,48 @@ package com.moringaschool.bookmeal.Authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.moringaschool.bookmeal.Admin.AdminMainActivity;
+import com.moringaschool.bookmeal.ApiClient;
+import com.moringaschool.bookmeal.Data;
+import com.moringaschool.bookmeal.LoginRequest;
+import com.moringaschool.bookmeal.LoginResponse;
 import com.moringaschool.bookmeal.R;
+import com.moringaschool.bookmeal.RegisterResponse;
+import com.moringaschool.bookmeal.Tokens;
 import com.moringaschool.bookmeal.UI.MainActivity;
 
+import org.json.JSONObject;
+
+import java.io.Serializable;
+import java.text.MessageFormat;
+import java.util.Arrays;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+    //initializing variables
     Button toRegister, login,forgot_password;
-    TextInputLayout email, password;
-    ImageView backhome;
+    TextInputLayout email,password;
+    ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +57,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         forgot_password.setOnClickListener(this);
         toRegister.setOnClickListener(this);
         login.setOnClickListener(this);
-        backhome=findViewById(R.id.back_btn);
-        backhome.setOnClickListener(this);
+
     }
 
     public boolean validateEmail() {
@@ -53,21 +80,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public boolean validatePassword() {
         String val = password.getEditText().getText().toString();
-        String passwordVal = "^" +
-                //"(?=.*[0-9])" +         //at least 1 digit
-                //"(?=.*[a-z])" +         //at least 1 lower case letter
-                //"(?=.*[A-Z])" +         //at least 1 upper case letter
-                "(?=.*[a-zA-Z])" +      //any letter
-                "(?=.*[@#$%^&+=])" +    //at least 1 special character
-                "(?=\\S+$)" +           //no white spaces
-                ".{4,}" +               //at least 4 characters
-                "$";
-
         if (val.isEmpty()) {
             password.setError("Field cannot be empty");
-            return false;
-        } else if (!val.matches(passwordVal)) {
-            password.setError("Password is too weak");
             return false;
         } else {
             password.setError(null);
@@ -86,16 +100,131 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if (!validatePassword() | !validateEmail()) {
                   return;
             }
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
+            //initializing progress dialog
+            progressDialog=new ProgressDialog(LoginActivity.this);
+            //show dialog
+            progressDialog.show();
+            //set content
+            progressDialog.setContentView(R.layout.progress_dialog);
+            //set transparent bg
+            progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            //login
+            LoginRequest loginRequest=new LoginRequest();
+            loginRequest.setEmail(email.getEditText().getText().toString());
+            loginRequest.setPassword(password.getEditText().getText().toString());
+            loginUser(loginRequest);
+//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            startActivity(intent);
             }
         if (view == forgot_password) {
             Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
             startActivity(intent);
         }
-        if (view == backhome) {
-            onBackPressed();
 
-        }
+    }
+
+    public void onBackPressed(){
+        //dismiss progress dialog
+        progressDialog.dismiss();
+    }
+    private void loginUser(LoginRequest loginRequest) {
+        Call<LoginResponse> loginResponseCall= ApiClient.getService().loginUser(loginRequest);
+        loginResponseCall.enqueue(new Callback<LoginResponse>() {
+
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if(response.isSuccessful()){
+                    LoginResponse loginResponse= response.body();
+                    //List<Data> data= (List<Data>) response.body().getData();
+                    Data data=response.body().getData();
+                    String username=data.getUsername();
+                    Boolean isStaffResponse=data.getIsStaff();
+                    //if the loged in user is a normal user
+                    if (!isStaffResponse){
+                        String message="Welcome "+username;
+                        Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
+                        new AlertDialog.Builder(LoginActivity.this)
+                                .setTitle("Login Successful")
+                                .setMessage(message)
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(LoginActivity.this,MainActivity.class)
+                                                .putExtra("data", (Serializable) data));
+                                        finish();
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+
+                    }
+                    //if the logged in user is an admin user
+                    else{
+                        String message="Welcome "+username;
+                        Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
+                        new AlertDialog.Builder(LoginActivity.this)
+                                .setTitle("Login Successful")
+                                .setMessage(message)
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(LoginActivity.this,AdminMainActivity.class)
+                                                .putExtra("data", (Serializable) data));
+                                        finish();
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+
+                    }
+                }
+                else{
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        String error_message=jObjError.getJSONObject("error").getString("message");
+                        new AlertDialog.Builder(LoginActivity.this)
+                                .setTitle("Login Not Successful")
+                                .setMessage("Invalid Credentials")
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(LoginActivity.this,LoginActivity.class));
+                                        finish();                                   }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                        //Toast.makeText(LoginActivity.this, jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        new AlertDialog.Builder(LoginActivity.this)
+                                .setTitle("Login NotSuccessful")
+                                .setMessage("Invalid Credentials")
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(LoginActivity.this,LoginActivity.class));
+                                        finish();
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                       // Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    };
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                String message=t.getLocalizedMessage();
+                new AlertDialog.Builder(LoginActivity.this)
+                        .setTitle("Login Not Successful")
+                        .setMessage(message)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(LoginActivity.this,LoginActivity.class));
+                                finish();                                   }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+                //Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 }
