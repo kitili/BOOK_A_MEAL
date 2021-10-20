@@ -109,8 +109,9 @@ public class AddFoodItemActivity extends AppCompatActivity implements View.OnCli
             super.onActivityResult(requestCode, resultCode, data);
             if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
                 //the image URI
-
+                selectedImage = data.getData();
                 Picasso.get().load(selectedImage).into(menu_image);
+               /// uploadFile();
 
 
 
