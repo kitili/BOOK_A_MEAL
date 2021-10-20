@@ -222,7 +222,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
-                Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
+                //Toast.makeText(LoginActivity.this,message,Toast.LENGTH_LONG).show();
             }
         });
 

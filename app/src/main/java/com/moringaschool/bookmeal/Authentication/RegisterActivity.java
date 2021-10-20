@@ -2,7 +2,9 @@ package com.moringaschool.bookmeal.Authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,12 +13,15 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.moringaschool.bookmeal.Admin.AdminMainActivity;
 import com.moringaschool.bookmeal.ApiClient;
 import com.moringaschool.bookmeal.R;
 import com.moringaschool.bookmeal.RegisterRequest;
 import com.moringaschool.bookmeal.RegisterResponse;
 
 import org.json.JSONObject;
+
+import java.io.Serializable;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -117,17 +122,49 @@ ProgressDialog progressDialog;
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                 if(response.isSuccessful()){
-                    String message="Registration successfull";
-                    Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                    String message="Registration successful";
+                    new AlertDialog.Builder(RegisterActivity.this)
+                            .setTitle("Login Successful")
+                            .setMessage(message)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                    finish();
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                    //Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
+                    //startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
 
-                }else{
-                    //String message="an error occurred ease try again later";
+                }  else{
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
-                        Toast.makeText(RegisterActivity.this, jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG).show();
+                        String error_message=jObjError.getJSONObject("error").getString("message");
+                        new AlertDialog.Builder(RegisterActivity.this)
+                                .setTitle("Login Not Successful")
+                                .setMessage(error_message)
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(RegisterActivity.this,RegisterActivity.class));
+                                        finish();                                   }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                        //Toast.makeText(LoginActivity.this, jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG).show();
                     } catch (Exception e) {
-                        Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        new AlertDialog.Builder(RegisterActivity.this)
+                                .setTitle("Registration Not Successful")
+                                .setMessage(e.getLocalizedMessage())
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(RegisterActivity.this,RegisterActivity.class));
+                                        finish();
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                        // Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                     };
                 }
 
@@ -136,7 +173,17 @@ ProgressDialog progressDialog;
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
                 String message=t.getLocalizedMessage();
-                Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
+                new AlertDialog.Builder(RegisterActivity.this)
+                        .setTitle("Registration Not Successful")
+                        .setMessage(message)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                                finish();                                   }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+               // Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
 
             }
         });
