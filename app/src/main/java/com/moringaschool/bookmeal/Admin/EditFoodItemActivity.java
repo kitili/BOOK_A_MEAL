@@ -51,7 +51,7 @@ public class EditFoodItemActivity extends AppCompatActivity implements View.OnCl
         ProgressDialog progressDialog;
         TextInputEditText name,price,description;
         Uri selectedImage;
-        String menu_name,menu_price,menu_description,menu_img,token;
+        String menu_name,menu_price,menu_description,menu_img,token,menu_id;
 
 
         SharedPreferences sharedPreferences;
@@ -75,6 +75,7 @@ public class EditFoodItemActivity extends AppCompatActivity implements View.OnCl
                 menu_price = extras.getString("price");
                 menu_description= extras.getString("description");
                 menu_img = extras.getString("image");
+                menu_id = extras.getString("menu_id");
                 name.setText(menu_name);
                 price.setText(menu_price);
                 description.setText(menu_description);
@@ -101,15 +102,16 @@ public class EditFoodItemActivity extends AppCompatActivity implements View.OnCl
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
             //the image URI
-            selectedImage = data.getData();
-            selectedImage = data.getData();
-            if(selectedImage ==null){
-                Uri myUri=Uri.parse(menu_img);
-                selectedImage=myUri;
+            if (selectedImage == null) {
+                selectedImage = data.getData();
             }
             else{
-                selectedImage=selectedImage;
+                Uri myUri = Uri.parse(menu_img);
+                selectedImage=myUri;
+
             }
+            selectedImage = data.getData();
+            //Picasso.get().load(selectedImage).into(menu_image);
             Picasso.get().load(selectedImage).into(menu_image);
 
 
@@ -153,7 +155,7 @@ public class EditFoodItemActivity extends AppCompatActivity implements View.OnCl
 
         //creating a call and calling the upload image method
 
-        Call<List<Menu>> call = ApiClient.getService().editMenuResponse(requestFile, names, prices, descriptions, partImage, token);
+        Call<List<Menu>> call = ApiClient.getService().editMenuResponse(requestFile, names, prices, descriptions, partImage, token,menu_id);
         //finally performing the call
         call.enqueue( new Callback<List<Menu>>() {
             @Override

@@ -73,7 +73,8 @@ public interface UserService {
             @Part("price") RequestBody price,
             @Part("description") RequestBody description,
             @Part MultipartBody.Part menu_image,
-            @Header("Authorization")  String token
+            @Header("Authorization")  String token,
+            @Path("menu_id") String menu_id
     );
     @GET("api/users/profile")
     Call<LoginResponse> userProfilesList (@Header("Authorization")  String token);

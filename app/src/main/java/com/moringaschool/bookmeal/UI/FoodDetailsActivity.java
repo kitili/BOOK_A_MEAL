@@ -123,6 +123,7 @@ public class FoodDetailsActivity extends AppCompatActivity implements View.OnCli
             i.putExtra("price", food_prices);
             i.putExtra("description", food_description);
             i.putExtra("image", food_image);
+            i.putExtra("menu_id", food_id);
             startActivity(i);
 
         }
