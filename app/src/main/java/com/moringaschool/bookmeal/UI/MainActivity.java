@@ -132,4 +132,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.contact_form_title: {
+                setContentView(R.layout.activity_contacts);
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
 }
