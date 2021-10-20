@@ -115,6 +115,10 @@ public class AdminMainActivity extends AppCompatActivity implements NavigationVi
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.clear();
                 editor.commit();
+                intent = new Intent(AdminMainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                break;
+
             case R.id.nav_orders:
                 intent = new Intent(AdminMainActivity.this, OrderListActivity.class);
                 startActivity(intent);

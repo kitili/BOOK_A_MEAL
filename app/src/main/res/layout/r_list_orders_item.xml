@@ -10,6 +10,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/id"
@@ -52,5 +56,6 @@
         android:textColor="@color/orange"
         app:layout_constraintTop_toBottomOf="@+id/user_name"
         tools:layout_editor_absoluteX="102dp" />
+    </LinearLayout>
     </ScrollView>
 </LinearLayout>

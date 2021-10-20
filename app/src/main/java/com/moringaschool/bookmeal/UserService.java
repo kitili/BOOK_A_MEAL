@@ -2,6 +2,7 @@ package com.moringaschool.bookmeal;
 
 
 import com.moringaschool.bookmeal.Model.Menu;
+import com.moringaschool.bookmeal.Model.Orders;
 
 import java.io.File;
 import java.util.List;
@@ -74,5 +75,13 @@ public interface UserService {
             @Part MultipartBody.Part menu_image,
             @Header("Authorization")  String token
     );
+    @GET("api/users/profile")
+    Call<LoginResponse> userProfilesList (@Header("Authorization")  String token);
+
+    @GET("api/orders/fetch-orders/")
+    Call <List<Orders>>orderResponse (@Header("Authorization")  String token);
+
+    @GET("api/users/profiles/")
+    Call <List<LoginResponse>>usersResponse (@Header("Authorization")  String token);
 
 }

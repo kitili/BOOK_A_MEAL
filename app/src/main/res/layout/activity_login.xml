@@ -76,11 +76,13 @@
             android:textSize="18dp" />
 
         <com.google.android.material.textfield.TextInputLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/sloganName"
             android:id="@+id/email"
             android:hint="@string/email"
+            app:hintAnimationEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
