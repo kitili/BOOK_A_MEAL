@@ -2,7 +2,9 @@ package com.moringaschool.bookmeal.Authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -96,16 +98,49 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
             public void onResponse(Call<ResetPasswordResponse> call, Response<ResetPasswordResponse> response) {
                 if(response.isSuccessful()){
                     String message="An email with the reset password details have been sent to your account";
-                    Toast.makeText(ForgotPasswordActivity.this,message,Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(ForgotPasswordActivity.this,LoginActivity.class));
+                    new AlertDialog.Builder(ForgotPasswordActivity.this)
+                            .setTitle("Success")
+                            .setMessage(message)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(ForgotPasswordActivity.this, LoginActivity.class));
+                                    finish();
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                    //Toast.makeText(ForgotPasswordActivity.this,message,Toast.LENGTH_LONG).show();
+                    //startActivity(new Intent(ForgotPasswordActivity.this,LoginActivity.class));
 
                 }else{
                     //String message="an error occurred ease try again later";
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
-                        Toast.makeText(ForgotPasswordActivity.this, jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG).show();
+                        String error_message=jObjError.getJSONObject("error").getString("message");
+                        new AlertDialog.Builder(ForgotPasswordActivity.this)
+                                .setTitle("Error")
+                                .setMessage(error_message)
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(ForgotPasswordActivity.this,ForgotPasswordActivity.class));
+                                        finish();
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                        //Toast.makeText(ForgotPasswordActivity.this, jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG).show();
                     } catch (Exception e) {
-                        Toast.makeText(ForgotPasswordActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        new AlertDialog.Builder(ForgotPasswordActivity.this)
+                                .setTitle("Error")
+                                .setMessage(e.getLocalizedMessage())
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(ForgotPasswordActivity.this,ForgotPasswordActivity.class));
+                                        finish();
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
                     };
                 }
 
@@ -113,7 +148,16 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
             @Override
             public void onFailure(Call<ResetPasswordResponse> call, Throwable t) {
                 String message=t.getLocalizedMessage();
-                Toast.makeText(ForgotPasswordActivity.this,message,Toast.LENGTH_LONG).show();
+                new AlertDialog.Builder(ForgotPasswordActivity.this)
+                        .setTitle("Error")
+                        .setMessage(message)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(ForgotPasswordActivity.this,ForgotPasswordActivity.class));
+                                finish();                                   }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
 
             }
         });

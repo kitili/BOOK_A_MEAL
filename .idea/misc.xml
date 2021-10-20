@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/background_splash.xml" value="0.1787037037037037" />
+        <entry key="app/src/main/res/drawable/button_orange_borderadius.xml" value="0.18697916666666667" />
         <entry key="app/src/main/res/drawable/buttonradius.xml" value="0.17222222222222222" />
         <entry key="app/src/main/res/drawable/container_bg.xml" value="0.30092592592592593" />
         <entry key="app/src/main/res/drawable/edittext_bg.xml" value="0.18697916666666667" />
