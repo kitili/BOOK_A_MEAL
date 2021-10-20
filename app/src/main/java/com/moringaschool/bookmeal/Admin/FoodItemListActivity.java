@@ -2,6 +2,7 @@ package com.moringaschool.bookmeal.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,7 +21,8 @@ import com.moringaschool.bookmeal.R;
         @Override
         public void onClick(View view) {
             if (view == backhome) {
-                onBackPressed();
+                Intent intent = new Intent(FoodItemListActivity.this, AdminMainActivity.class);
+                startActivity(intent);
 
             }
         }

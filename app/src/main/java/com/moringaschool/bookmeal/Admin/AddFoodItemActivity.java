@@ -112,11 +112,10 @@ public class AddFoodItemActivity extends AppCompatActivity implements View.OnCli
                 selectedImage = data.getData();
                 Picasso.get().load(selectedImage).into(menu_image);
                /// uploadFile();
-
-
-
-            }
         }
+    }
+            //open file chooser
+
     /*
      * This method is fetching the absolute path of the image file
      * if you want to upload other kind of files like .pdf, .docx

@@ -117,7 +117,10 @@ public class EditFoodItemActivity extends AppCompatActivity implements View.OnCl
 
 
         }
+
+
     }
+
     /*
      * This method is fetching the absolute path of the image file
      * if you want to upload other kind of files like .pdf, .docx
