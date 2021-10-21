@@ -85,4 +85,8 @@ public interface UserService {
     @GET("api/users/profiles/")
     Call <List<LoginResponse>>usersResponse (@Header("Authorization")  String token);
 
+    @POST("api/orders/add/")
+    Call <OrdersResponse> makeorderResponse (@Body MakeOrder makeOrder,
+                                                  @Header("Authorization")  String token);
+
 }

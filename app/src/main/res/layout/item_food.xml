@@ -72,17 +72,17 @@
         android:text="KSH 400"
         app:layout_constraintStart_toEndOf="@+id/item_food_img"
         app:layout_constraintTop_toBottomOf="@+id/item_food_price" />
-    <Button
-        android:id="@+id/item_food_order_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Order"
-        android:fontFamily="@font/actor"
-        android:textSize="10sp"
-        android:minHeight="0dp"
-        app:layout_constraintStart_toEndOf="@id/item_food_img"
-        app:layout_constraintTop_toBottomOf="@id/item_food_price" />
+<!--    <Button-->
+<!--        android:id="@+id/item_food_order_btn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:text="Order"-->
+<!--        android:fontFamily="@font/actor"-->
+<!--        android:textSize="10sp"-->
+<!--        android:minHeight="0dp"-->
+<!--        app:layout_constraintStart_toEndOf="@id/item_food_img"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/item_food_price" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

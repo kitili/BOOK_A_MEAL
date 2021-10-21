@@ -283,7 +283,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onClick(View v, int position) {
-                Intent intent = new Intent(getApplicationContext(), FoodDetailsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MenuDetailActivity.class);
                 intent.putExtra("id",menuList.get(position).getId());
                 intent.putExtra("name", menuList.get(position).getName());
                 intent.putExtra("price", menuList.get(position).getPrice());
