@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookMeal">
         <activity
+            android:name=".UI.MyCartActivity"
+            android:exported="true" />
+        <activity
             android:name=".UI.MenuDetailActivity"
             android:exported="true" />
         <activity
