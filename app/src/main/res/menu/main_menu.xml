@@ -5,9 +5,6 @@
             android:id="@+id/nav_home"
             android:title="Home"></item>
         <item
-            android:id="@+id/nav_cart"
-            android:title="ViewCart "></item>
-        <item
             android:id="@+id/nav_orders"
             android:title="Today's Orders"></item>
         <item
@@ -27,6 +24,9 @@
                 <item
                     android:id="@+id/nav_profile"
                     android:title="Profile"></item>
+                <item
+                    android:id="@+id/nav_profile_edit"
+                    android:title="Edit Profile"></item>
                 <item
                     android:id="@+id/nav_logout"
                     android:title="Logout"></item>
