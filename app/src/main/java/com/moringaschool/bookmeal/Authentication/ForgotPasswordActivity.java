@@ -25,7 +25,6 @@ import retrofit2.Response;
 
 public class ForgotPasswordActivity extends AppCompatActivity implements View.OnClickListener{
     Button login,reset;
-    ImageView backhome;
     TextInputLayout email;
     ProgressDialog progressDialog;
 
@@ -38,8 +37,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         reset=findViewById(R.id.reset);
         login.setOnClickListener(this);
         reset.setOnClickListener(this);
-        backhome=findViewById(R.id.back_btn);
-        backhome.setOnClickListener(this);
+
         //email = findViewById(R.id.email);
     }
     public boolean validateEmail(){
@@ -82,10 +80,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
             resetPassword(resetPasswordRequest);
 
         }
-        if (view == backhome) {
-            onBackPressed();
-
-        }
 
     }
 
@@ -105,7 +99,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                                     finish();
                                 }
                             })
-                            .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
                     //Toast.makeText(ForgotPasswordActivity.this,message,Toast.LENGTH_LONG).show();
                     //startActivity(new Intent(ForgotPasswordActivity.this,LoginActivity.class));
@@ -116,7 +109,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
                         String error_message=jObjError.getJSONObject("error").getString("message");
                         new AlertDialog.Builder(ForgotPasswordActivity.this)
-                                .setTitle("Error")
+                                .setTitle("Not Successful")
                                 .setMessage(error_message)
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
@@ -124,12 +117,11 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                                         finish();
                                     }
                                 })
-                                .setIcon(android.R.drawable.ic_dialog_alert)
                                 .show();
                         //Toast.makeText(ForgotPasswordActivity.this, jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG).show();
                     } catch (Exception e) {
                         new AlertDialog.Builder(ForgotPasswordActivity.this)
-                                .setTitle("Error")
+                                .setTitle("Not Successful")
                                 .setMessage(e.getLocalizedMessage())
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
@@ -137,7 +129,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                                         finish();
                                     }
                                 })
-                                .setIcon(android.R.drawable.ic_dialog_alert)
                                 .show();
                     };
                 }
