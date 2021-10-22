@@ -137,7 +137,7 @@ public class MyCartActivity extends AppCompatActivity  {
                     }
 
                     @Override
-                    public void onFailure(Call<Void> deleteMenuCall, Throwable t) {
+                    public void onFailure(Call<Void> deleteOrdercall, Throwable t) {
                         String message=t.getLocalizedMessage();
                         Toast.makeText(MyCartActivity.this,message,Toast.LENGTH_LONG).show();
                     }
@@ -148,6 +148,27 @@ public class MyCartActivity extends AppCompatActivity  {
 
             @Override
             public void onItemChange(View V, int position) {
+                SharedPreferences sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                token = sharedPreferences.getString("access_token", "");
+                token = "Bearer " + token;
+                String order_id=ordersList.get(position).getId();
+                Call<Void> completeOrdercall= ApiClient.getService().completeOrder(token,order_id);
+                completeOrdercall.enqueue(new Callback<Void>() {
+
+                    @Override
+                    public void onResponse(Call<Void> completeOrdercall, Response<Void> response) {
+                        Toast.makeText(MyCartActivity.this,"The order was completed successfully",Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(MyCartActivity.this, OrderCompleteActivity.class));
+                        finish();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> completeOrdercall, Throwable t) {
+                        String message=t.getLocalizedMessage();
+                        Toast.makeText(MyCartActivity.this,message,Toast.LENGTH_LONG).show();
+                    }
+                });
 
             }
         };

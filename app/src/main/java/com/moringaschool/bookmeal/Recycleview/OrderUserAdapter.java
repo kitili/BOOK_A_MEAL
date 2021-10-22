@@ -74,9 +74,8 @@ public class OrderUserAdapter extends RecyclerView.Adapter<OrderUserAdapter.Orde
                 List<Orders> new_order=new ArrayList<>();
             }
             if (view==complete){
-                listener.onItemClick(view,getAdapterPosition());
+                listener.onItemChange(view,getAdapterPosition());
                 List<Orders> new_order=new ArrayList<>();
-
             }
 
 

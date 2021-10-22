@@ -95,5 +95,9 @@ public interface UserService {
     Call<Void> deleteOrder (@Header("Authorization")  String token,
                         @Path("order_id") String order_id);
 
+    @POST("api/orders/close-order/{order_id}/")
+    Call<Void> completeOrder (@Header("Authorization")  String token,
+                            @Path("order_id") String order_id);
+
 
 }
