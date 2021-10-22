@@ -9,20 +9,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.moringaschool.bookmeal.Admin.AdminMainActivity;
 import com.moringaschool.bookmeal.ApiClient;
-import com.moringaschool.bookmeal.EditProfile;
-import com.moringaschool.bookmeal.EditProfileRequest;
+import com.moringaschool.bookmeal.Model.EditProfile;
+import com.moringaschool.bookmeal.Model.EditProfileRequest;
 import com.moringaschool.bookmeal.R;
-import com.moringaschool.bookmeal.RegisterRequest;
-import com.moringaschool.bookmeal.RegisterResponse;
 
 import org.json.JSONObject;
 

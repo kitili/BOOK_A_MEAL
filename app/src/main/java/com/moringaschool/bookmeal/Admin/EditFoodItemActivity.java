@@ -19,16 +19,11 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-import com.moringaschool.bookmeal.AddMenuResponse;
 import com.moringaschool.bookmeal.ApiClient;
-import com.moringaschool.bookmeal.Authentication.EditProfileActivity;
-import com.moringaschool.bookmeal.EditProfileRequest;
 import com.moringaschool.bookmeal.Model.Menu;
 import com.moringaschool.bookmeal.R;
 import com.squareup.picasso.Picasso;

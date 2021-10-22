@@ -4,58 +4,36 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-import com.moringaschool.bookmeal.Admin.ViewMenuActivity;
 import com.moringaschool.bookmeal.ApiClient;
 import com.moringaschool.bookmeal.Authentication.LoginActivity;
 import com.moringaschool.bookmeal.Authentication.ProfileActivity;
 import com.moringaschool.bookmeal.Authentication.RegisterActivity;
-import com.moringaschool.bookmeal.Data;
-import com.moringaschool.bookmeal.LoginResponse;
-import com.moringaschool.bookmeal.Model.Food;
+import com.moringaschool.bookmeal.Model.Data;
 import com.moringaschool.bookmeal.R;
-import com.moringaschool.bookmeal.Recycleview.FoodAdapter;
-import com.moringaschool.bookmeal.Recycleview.MenuAdapter;
 import com.moringaschool.bookmeal.Recycleview.MenuUserAdapter;
-import com.moringaschool.bookmeal.Recycleview.foodCallback;
-import com.moringaschool.bookmeal.Tokens;
+import com.moringaschool.bookmeal.Model.Tokens;
 
-import java.io.File;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
-
-import androidx.core.util.Pair;
 
 import org.json.JSONObject;
 

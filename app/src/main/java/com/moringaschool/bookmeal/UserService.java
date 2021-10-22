@@ -1,21 +1,29 @@
 package com.moringaschool.bookmeal;
 
 
+import com.moringaschool.bookmeal.Model.AddMenuResponse;
+import com.moringaschool.bookmeal.Model.EditProfile;
+import com.moringaschool.bookmeal.Model.EditProfileRequest;
+import com.moringaschool.bookmeal.Model.LoginRequest;
+import com.moringaschool.bookmeal.Model.LoginResponse;
+import com.moringaschool.bookmeal.Model.MakeOrder;
 import com.moringaschool.bookmeal.Model.Menu;
 import com.moringaschool.bookmeal.Model.Orders;
+import com.moringaschool.bookmeal.Model.OrdersResponse;
+import com.moringaschool.bookmeal.Model.RegisterRequest;
+import com.moringaschool.bookmeal.Model.RegisterResponse;
+import com.moringaschool.bookmeal.Model.ResetPasswordRequest;
+import com.moringaschool.bookmeal.Model.ResetPasswordResponse;
 
-import java.io.File;
 import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -87,7 +95,7 @@ public interface UserService {
 
     @POST("api/orders/add/")
     Call <OrdersResponse> makeorderResponse (@Body MakeOrder makeOrder,
-                                                  @Header("Authorization")  String token);
+                                             @Header("Authorization")  String token);
     @GET("api/orders/fetch-order-history/")
     Call <List<Orders>>orderUserResponse (@Header("Authorization")  String token);
 

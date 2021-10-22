@@ -1,23 +1,15 @@
 package com.moringaschool.bookmeal.Recycleview;
 
-import static com.moringaschool.bookmeal.UI.MainActivity.MyPREFERENCES;
-
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.moringaschool.bookmeal.Data;
 import com.moringaschool.bookmeal.Model.Orders;
 import com.moringaschool.bookmeal.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;

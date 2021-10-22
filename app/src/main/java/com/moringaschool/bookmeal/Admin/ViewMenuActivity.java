@@ -3,7 +3,6 @@ package com.moringaschool.bookmeal.Admin;
 import static com.moringaschool.bookmeal.UI.MainActivity.MyPREFERENCES;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,9 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -22,21 +18,13 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.moringaschool.bookmeal.ApiClient;
-import com.moringaschool.bookmeal.Authentication.LoginActivity;
-import com.moringaschool.bookmeal.Data;
-import com.moringaschool.bookmeal.LoginResponse;
-import com.moringaschool.bookmeal.MenuResponse;
-import com.moringaschool.bookmeal.Model.Food;
 import com.moringaschool.bookmeal.Model.Menu;
 import com.moringaschool.bookmeal.R;
-import com.moringaschool.bookmeal.Recycleview.FoodAdapter;
 import com.moringaschool.bookmeal.Recycleview.MenuAdapter;
 import com.moringaschool.bookmeal.UI.FoodDetailsActivity;
-import com.moringaschool.bookmeal.UI.MainActivity;
 
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

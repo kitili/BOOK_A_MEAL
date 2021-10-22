@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,12 +18,9 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.moringaschool.bookmeal.ApiClient;
-import com.moringaschool.bookmeal.LoginResponse;
-import com.moringaschool.bookmeal.Model.Menu;
+import com.moringaschool.bookmeal.Model.LoginResponse;
 import com.moringaschool.bookmeal.R;
-import com.moringaschool.bookmeal.Recycleview.MenuAdapter;
 import com.moringaschool.bookmeal.Recycleview.UserAdapter;
-import com.moringaschool.bookmeal.UI.FoodDetailsActivity;
 
 import org.json.JSONObject;
 

@@ -16,25 +16,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.moringaschool.bookmeal.Admin.EditFoodItemActivity;
-import com.moringaschool.bookmeal.Admin.ViewMenuActivity;
 import com.moringaschool.bookmeal.ApiClient;
 import com.moringaschool.bookmeal.Authentication.LoginActivity;
-import com.moringaschool.bookmeal.Authentication.RegisterActivity;
-import com.moringaschool.bookmeal.MakeOrder;
-import com.moringaschool.bookmeal.OrdersResponse;
+import com.moringaschool.bookmeal.Model.MakeOrder;
+import com.moringaschool.bookmeal.Model.OrdersResponse;
 import com.moringaschool.bookmeal.R;
-import com.moringaschool.bookmeal.RegisterRequest;
-import com.moringaschool.bookmeal.RegisterResponse;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

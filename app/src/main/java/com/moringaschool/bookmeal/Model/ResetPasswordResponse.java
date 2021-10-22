@@ -1,5 +1,5 @@
 
-package com.moringaschool.bookmeal;
+package com.moringaschool.bookmeal.Model;
 
 
 import com.google.gson.annotations.Expose;

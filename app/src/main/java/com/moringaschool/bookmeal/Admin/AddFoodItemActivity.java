@@ -2,14 +2,11 @@ package com.moringaschool.bookmeal.Admin;
 
 import static com.moringaschool.bookmeal.UI.MainActivity.MyPREFERENCES;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.loader.content.CursorLoader;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -17,40 +14,23 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.cloudinary.android.MediaManager;
-import com.cloudinary.android.callback.ErrorInfo;
-import com.cloudinary.android.callback.UploadCallback;
-import com.google.android.gms.common.api.Api;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.moringaschool.bookmeal.AddMenuRequest;
-import com.moringaschool.bookmeal.AddMenuResponse;
+import com.moringaschool.bookmeal.Model.AddMenuResponse;
 import com.moringaschool.bookmeal.ApiClient;
-import com.moringaschool.bookmeal.Authentication.LoginActivity;
-import com.moringaschool.bookmeal.Authentication.RegisterActivity;
 import com.moringaschool.bookmeal.R;
-import com.moringaschool.bookmeal.RegisterRequest;
-import com.moringaschool.bookmeal.RegisterResponse;
-import com.moringaschool.bookmeal.UserService;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
 import java.io.File;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -58,9 +38,6 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Part;
 
 public class AddFoodItemActivity extends AppCompatActivity implements View.OnClickListener {
         ImageView backhome, menu_image;

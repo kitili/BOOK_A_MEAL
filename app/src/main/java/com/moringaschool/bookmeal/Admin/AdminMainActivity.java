@@ -18,13 +18,10 @@ import com.google.android.material.navigation.NavigationView;
 import com.moringaschool.bookmeal.Authentication.EditProfileActivity;
 import com.moringaschool.bookmeal.Authentication.LoginActivity;
 import com.moringaschool.bookmeal.Authentication.ProfileActivity;
-import com.moringaschool.bookmeal.Authentication.RegisterActivity;
-import com.moringaschool.bookmeal.Data;
+import com.moringaschool.bookmeal.Model.Data;
 import com.moringaschool.bookmeal.R;
-import com.moringaschool.bookmeal.Tokens;
+import com.moringaschool.bookmeal.Model.Tokens;
 import com.moringaschool.bookmeal.UI.MainActivity;
-import com.moringaschool.bookmeal.UI.OrderActivity;
-import com.moringaschool.bookmeal.UI.OrderHistoryActivity;
 
 public class AdminMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;

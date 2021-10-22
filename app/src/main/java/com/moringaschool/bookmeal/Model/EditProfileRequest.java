@@ -1,4 +1,4 @@
-package com.moringaschool.bookmeal;
+package com.moringaschool.bookmeal.Model;
 
 public class EditProfileRequest {
     private String id;

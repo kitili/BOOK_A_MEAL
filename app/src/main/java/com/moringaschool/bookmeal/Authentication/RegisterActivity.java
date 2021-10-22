@@ -10,18 +10,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.moringaschool.bookmeal.Admin.AdminMainActivity;
 import com.moringaschool.bookmeal.ApiClient;
 import com.moringaschool.bookmeal.R;
-import com.moringaschool.bookmeal.RegisterRequest;
-import com.moringaschool.bookmeal.RegisterResponse;
+import com.moringaschool.bookmeal.Model.RegisterRequest;
+import com.moringaschool.bookmeal.Model.RegisterResponse;
 
 import org.json.JSONObject;
-
-import java.io.Serializable;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -14,9 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.moringaschool.bookmeal.Data;
+import com.moringaschool.bookmeal.Model.Data;
 import com.moringaschool.bookmeal.R;
-import com.moringaschool.bookmeal.Tokens;
 import com.squareup.picasso.Picasso;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {

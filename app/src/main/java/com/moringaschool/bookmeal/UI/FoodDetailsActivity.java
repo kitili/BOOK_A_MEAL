@@ -19,14 +19,8 @@ import android.widget.Toast;
 import com.moringaschool.bookmeal.Admin.EditFoodItemActivity;
 import com.moringaschool.bookmeal.Admin.ViewMenuActivity;
 import com.moringaschool.bookmeal.ApiClient;
-import com.moringaschool.bookmeal.Authentication.LoginActivity;
-import com.moringaschool.bookmeal.LoginResponse;
 import com.moringaschool.bookmeal.R;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
-
-import java.io.Serializable;
 
 import retrofit2.Call;
 import retrofit2.Callback;

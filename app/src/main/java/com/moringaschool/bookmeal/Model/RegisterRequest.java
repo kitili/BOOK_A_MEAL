@@ -1,4 +1,4 @@
-package com.moringaschool.bookmeal;
+package com.moringaschool.bookmeal.Model;
 
 public class RegisterRequest {
     private String id;

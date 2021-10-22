@@ -1,9 +1,12 @@
-package com.moringaschool.bookmeal;
+package com.moringaschool.bookmeal.Model;
+
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AddMenuResponse {
+
+public class MenuResponse {
+
     @SerializedName("id")
     @Expose
     private String id;
@@ -26,10 +29,25 @@ public class AddMenuResponse {
     @Expose
     private String owner;
 
-    public AddMenuResponse() {
+    /**
+     * No args constructor for use in serialization
+     *
+     */
+    public MenuResponse() {
     }
 
-    public AddMenuResponse(String id, String name, String description, Integer price, String menuImage, String created, String owner) {
+    /**
+     *
+     * @param owner
+     * @param price
+     * @param created
+     * @param name
+     * @param description
+     * @param menuImage
+     * @param id
+     */
+    public MenuResponse(String id, String name, String description, Integer price, String menuImage, String created, String owner) {
+        super();
         this.id = id;
         this.name = name;
         this.description = description;
@@ -94,6 +112,5 @@ public class AddMenuResponse {
     public void setOwner(String owner) {
         this.owner = owner;
     }
+
 }
-
-

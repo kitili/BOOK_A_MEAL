@@ -1,19 +1,16 @@
 package com.moringaschool.bookmeal.Recycleview;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.moringaschool.bookmeal.Data;
-import com.moringaschool.bookmeal.LoginResponse;
-import com.moringaschool.bookmeal.Model.Menu;
+import com.moringaschool.bookmeal.Model.Data;
+import com.moringaschool.bookmeal.Model.LoginResponse;
 import com.moringaschool.bookmeal.R;
 import com.squareup.picasso.Picasso;
 

@@ -1,13 +1,13 @@
 
-package com.moringaschool.bookmeal;
-
+package com.moringaschool.bookmeal.Model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.moringaschool.bookmeal.Model.Data;
 
+import java.io.Serializable;
 
-public class EditProfile {
-
+public class LoginResponse implements Serializable {
 
     @SerializedName("status")
     @Expose
@@ -20,7 +20,7 @@ public class EditProfile {
      * No args constructor for use in serialization
      * 
      */
-    public EditProfile() {
+    public LoginResponse() {
     }
 
     /**
@@ -28,7 +28,7 @@ public class EditProfile {
      * @param data
      * @param status
      */
-    public EditProfile(String status, Data data) {
+    public LoginResponse(String status, Data data) {
         super();
         this.status = status;
         this.data = data;

@@ -3,7 +3,6 @@ package com.moringaschool.bookmeal.Model;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.moringaschool.bookmeal.Data;
 
 public class Orders {
 
