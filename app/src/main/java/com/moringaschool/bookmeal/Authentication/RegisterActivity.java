@@ -37,8 +37,6 @@ ProgressDialog progressDialog;
         toLogin=findViewById(R.id.backLogin);
         toRegister.setOnClickListener(this);
         toLogin.setOnClickListener(this);
-
-
         fullName =findViewById(R.id.fullName);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -118,9 +116,9 @@ ProgressDialog progressDialog;
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                 if(response.isSuccessful()){
-                    String message="Registration successful";
+                    String message="Registration successful login to continue ";
                     new AlertDialog.Builder(RegisterActivity.this)
-                            .setTitle("Login Successful")
+                            .setTitle("Successful")
                             .setMessage(message)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -128,17 +126,14 @@ ProgressDialog progressDialog;
                                     finish();
                                 }
                             })
-                            .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
-                    //Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
-                    //startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
 
                 }  else{
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
                         String error_message=jObjError.getJSONObject("error").getString("message");
                         new AlertDialog.Builder(RegisterActivity.this)
-                                .setTitle("Login Not Successful")
+                                .setTitle("Not Successful")
                                 .setMessage(error_message)
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
