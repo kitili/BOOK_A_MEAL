@@ -88,5 +88,12 @@ public interface UserService {
     @POST("api/orders/add/")
     Call <OrdersResponse> makeorderResponse (@Body MakeOrder makeOrder,
                                                   @Header("Authorization")  String token);
+    @GET("api/orders/fetch-order-history/")
+    Call <List<Orders>>orderUserResponse (@Header("Authorization")  String token);
+
+    @DELETE("api/orders/delete-order/{order_id}/")
+    Call<Void> deleteOrder (@Header("Authorization")  String token,
+                        @Path("order_id") String order_id);
+
 
 }

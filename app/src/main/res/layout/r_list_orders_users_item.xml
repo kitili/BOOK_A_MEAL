@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/white_circle"
+    android:layout_marginBottom="10dp"
+    android:layout_height="200dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/actor"
+                android:text=""
+                android:textStyle="bold"
+                android:textSize="14dp"
+
+                />
+
+            <TextView
+                android:id="@+id/customer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/id"
+                android:fontFamily="@font/actor"
+                android:text=""
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/actor"
+                android:text=""
+                android:textSize="12dp"
+                android:layout_alignBottom="@+id/customer"
+                tools:layout_editor_absoluteX="102dp" />
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/actor"
+                android:text=""
+                android:textSize="12dp"
+                android:textColor="@color/orange"
+                android:layout_alignBottom="@+id/total"
+                tools:layout_editor_absoluteX="102dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/item_complete_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/actor"
+                    android:gravity="right"
+                    android:minHeight="0dp"
+                    android:text="Complete"
+                    android:textSize="10sp" />
+            <ImageView
+                    android:id="@+id/item_delete_order_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="160dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Delete"
+                    android:src="@drawable/ic_delete"
+                    android:fontFamily="@font/actor"
+                android:layout_alignLeft="@id/item_complete_btn"
+                    android:textSize="10sp"
+                    android:minHeight="0dp" />
+            </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

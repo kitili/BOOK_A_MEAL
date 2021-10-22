@@ -258,6 +258,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent = new Intent(MainActivity.this, contacts.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_cart:
+                intent = new Intent(MainActivity.this, MyCartActivity.class);
+                startActivity(intent);
+                break;
 
             case R.id.nav_share:
                 Intent sendIntent = new Intent();
@@ -295,8 +299,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ;
         };
     }
-
-
 
     private void showFailureMessage() {
 //        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");

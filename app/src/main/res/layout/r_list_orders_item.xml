@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/actor"
-        android:text="ggrrgrtgtgtgggggggggggggggggggggggggggggggggg"
+        android:text=""
         android:textStyle="bold"
         android:textSize="14dp"
         />
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/actor"
-        android:text="Victoria Okumu"
+        android:text=""
         android:textSize="14dp"/>
 
     <TextView
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/actor"
-        android:text="400"
+        android:text=""
         android:textSize="12dp"
         app:layout_constraintTop_toBottomOf="@+id/user_name"
         tools:layout_editor_absoluteX="102dp" />
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/actor"
-        android:text="Completed"
+        android:text=""
         android:textSize="12dp"
         android:textColor="@color/orange"
         app:layout_constraintTop_toBottomOf="@+id/user_name"
