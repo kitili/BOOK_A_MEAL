@@ -107,7 +107,7 @@ public class OrderUserAdapter extends RecyclerView.Adapter<OrderUserAdapter.Orde
             holder.id.setText(ids);
         }
         else{
-            holder.status.setText("No Completed orders yet");
+
         }
 
     }

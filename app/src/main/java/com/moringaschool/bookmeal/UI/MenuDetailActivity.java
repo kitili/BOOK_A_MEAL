@@ -15,7 +15,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.moringaschool.bookmeal.ApiClient;
@@ -43,6 +45,7 @@ public class MenuDetailActivity extends AppCompatActivity implements View.OnClic
     String food_image;
     TextInputLayout food_quantity;
     Button order;
+    NumberPicker np;
     ProgressDialog progressDialog;
 
     @Override
@@ -66,8 +69,6 @@ public class MenuDetailActivity extends AppCompatActivity implements View.OnClic
             food_name = extras.getString("name");
             food_price = extras.getInt("price");
             food_prices = Integer.toString((int) food_price);
-            String TAG = "FoodDetails";
-            Log.e(TAG, "mmmmm==============================>" + food_prices);
             food_description = extras.getString("description");
             food_id = extras.getString("id");
             food_image = extras.getString("imageURL");
@@ -79,7 +80,22 @@ public class MenuDetailActivity extends AppCompatActivity implements View.OnClic
         description.setText(food_description);
         //food_quantity.setText(quantity.toString());
         Picasso.get().load(food_image).into(imageview);
+        np = findViewById(R.id.numberPicker);
+
+        np.setMinValue(1);
+        np.setMaxValue(20);
+
+        np.setOnValueChangedListener(onValueChangeListener);
+
     }
+    NumberPicker.OnValueChangeListener onValueChangeListener =
+            new 	NumberPicker.OnValueChangeListener(){
+                @Override
+                public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                    Toast.makeText(MenuDetailActivity.this,
+                            "selected number "+numberPicker.getValue(), Toast.LENGTH_SHORT);
+                }
+            };
 
     @Override
     public void onClick(View view) {
@@ -91,12 +107,13 @@ public class MenuDetailActivity extends AppCompatActivity implements View.OnClic
             //register
             MakeOrder makeOrder = new MakeOrder();   //initializing progress dialog
             makeOrder.setMenu_id(food_id);
-            if(food_quantity.getEditText().getText().toString().isEmpty()){
-                makeOrder.setQuantity(1);
-            }
-            else{
-                makeOrder.setQuantity(Integer.valueOf(food_quantity.getEditText().getText().toString()));
-            }
+            makeOrder.setQuantity(np.getValue());
+//            if(food_quantity.getEditText().getText().toString().isEmpty()){
+//                makeOrder.setQuantity(1);
+//            }
+//            else{
+//                makeOrder.setQuantity(np.getValue());
+//            }
             makeorder(makeOrder);
 
         }
@@ -108,9 +125,11 @@ public class MenuDetailActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onResponse(Call<OrdersResponse> call, Response<OrdersResponse> response) {
                 if (response.isSuccessful()) {
+                    String TAG = "FoodDetails";
+                    Log.e(TAG, "mmmmm==============================>" + np.getValue());
                     String message = "Menu added to your cart successful";
                     new AlertDialog.Builder(MenuDetailActivity.this)
-                            .setTitle("Order Successful")
+                            .setTitle("Successful")
                             .setMessage(message)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -118,7 +137,6 @@ public class MenuDetailActivity extends AppCompatActivity implements View.OnClic
                                     finish();
                                 }
                             })
-                            .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
                     //Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
                     //startActivity(new Intent(RegisterActivity.this,LoginActivity.class));

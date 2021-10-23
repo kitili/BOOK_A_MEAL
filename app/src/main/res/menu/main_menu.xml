@@ -5,6 +5,9 @@
             android:id="@+id/nav_home"
             android:title="Home"></item>
         <item
+            android:id="@+id/nav_cart"
+            android:title="My Food Cart"></item>
+        <item
             android:id="@+id/nav_orders"
             android:title="Today's Orders"></item>
         <item
