@@ -170,7 +170,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                     editor.putString("other_name_key", profile_other_name.getText().toString());
                     editor.apply();
 
-                }else{
+                }
+                else{
                     //String message="an error occurred ease try again later";
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());

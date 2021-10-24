@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_cart:
-                intent = new Intent(MainActivity.this, MyCartActivity.class);
+                intent = new Intent(MainActivity.this, UserCartActivity.class);
                 startActivity(intent);
                 break;
 
