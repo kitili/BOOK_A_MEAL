@@ -58,8 +58,6 @@ String token,user_id,other_name,first_name,username,email,user_image;
         profile_other_name.setText(other_name);
         profile_email.setText(email);
         profile_username.setText(username);
-        String TAG="this is the tag";
-        Log.e(TAG,"msg==================>"+user_image);
         Picasso.get().load(user_image).into(profile_image);
        // Picasso.get().load("https://res.cloudinary.com/dxouhnqpf/image/upload/v1/images/menus/icons8-cute-pumpkin-30_neiad6").into(profile_image);
 

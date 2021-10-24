@@ -79,15 +79,16 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/profile_photo"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/images"
-                android:layout_gravity="left"
-                />
+
+                <ImageView
+                    android:id="@+id/profile_photo"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="left"
+                    android:src="@drawable/images" />
 
                 <Button
+                    android:id="@+id/btn_upload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/profile_photo"

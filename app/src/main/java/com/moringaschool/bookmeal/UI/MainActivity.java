@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.moringaschool.bookmeal.ApiClient;
+import com.moringaschool.bookmeal.Authentication.EditProfileActivity;
 import com.moringaschool.bookmeal.Authentication.LoginActivity;
 import com.moringaschool.bookmeal.Authentication.ProfileActivity;
 import com.moringaschool.bookmeal.Authentication.RegisterActivity;
@@ -111,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             String logged_first_name = (String) data.getFirstName();
             String logged_other_name = (String) data.getOtherName();
             String logged_userImage = data.getUserImage();
+
 
             sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -229,6 +231,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("data", data);
                 startActivity(intent);
                 break;
+            case R.id.nav_profile_edit:
+                intent = new Intent(MainActivity.this, EditProfileActivity.class);
+                intent.putExtra("data", data);
+                startActivity(intent);
+                break;
+
             case R.id.nav_contact:
                 intent = new Intent(MainActivity.this, contacts.class);
                 startActivity(intent);

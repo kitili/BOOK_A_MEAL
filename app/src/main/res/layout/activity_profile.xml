@@ -80,9 +80,10 @@
                 android:id="@+id/profile_photo"
                 android:layout_width="160dp"
                 android:layout_height="120dp"
-                android:src="@drawable/images"
+                android:src="@drawable/icons8_person_30"
                 android:layout_gravity="left"
                 />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

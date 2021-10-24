@@ -2,6 +2,7 @@ package com.moringaschool.bookmeal;
 
 
 import com.moringaschool.bookmeal.Model.AddMenuResponse;
+import com.moringaschool.bookmeal.Model.Data;
 import com.moringaschool.bookmeal.Model.EditProfile;
 import com.moringaschool.bookmeal.Model.EditProfileRequest;
 import com.moringaschool.bookmeal.Model.LoginRequest;
@@ -41,10 +42,19 @@ public interface UserService {
     @POST ("api/users/change-password-request/")
     Call<ResetPasswordResponse> resetPassword (@Body ResetPasswordRequest resetPassword);
 
+    @Multipart
     @PUT("https://bookameal.herokuapp.com/api/users/profile/{id}/edit/")
-  Call<EditProfile> editProfile (@Body EditProfileRequest editProfileRequest,
-                                 @Header("Authorization")  String token,
-                                 @Path("id") String id);
+//  Call<EditProfile> editProfile (@Body EditProfileRequest editProfileRequest,
+//                                 @Header("Authorization")  String token,
+//                                 @Path("id") String id);
+    Call<Data> editProfile(@Part("image\"; filename=\"myfile.jpg\" ") RequestBody file,
+                           @Part("email") RequestBody email,
+                           @Part("username") RequestBody username,
+                           @Part("first_name") RequestBody first_name,
+                           @Part("other_name") RequestBody other_name,
+                           @Part MultipartBody.Part user_image,
+                           @Header("Authorization")  String token,
+                           @Path("id") String id);
 
 
 //    @Multipart
