@@ -55,7 +55,7 @@ public class MenuDetailActivity extends AppCompatActivity implements View.OnClic
         imageview = findViewById(R.id.item_food_img);
         name = findViewById(R.id.item_food_name);
         price = findViewById(R.id.item_food_price);
-        food_quantity = findViewById(R.id.item_food_quantity);
+       // food_quantity = findViewById(R.id.item_food_quantity);
         description = findViewById(R.id.item_food_desc);
         backhome = findViewById(R.id.back_btn);
         backhome.setOnClickListener(this);
