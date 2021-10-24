@@ -10,6 +10,7 @@ import com.moringaschool.bookmeal.Model.LoginResponse;
 import com.moringaschool.bookmeal.Model.MakeOrder;
 import com.moringaschool.bookmeal.Model.Menu;
 import com.moringaschool.bookmeal.Model.OrderResponse;
+import com.moringaschool.bookmeal.Model.OrderSummary;
 import com.moringaschool.bookmeal.Model.Orders;
 import com.moringaschool.bookmeal.Model.OrdersResponse;
 import com.moringaschool.bookmeal.Model.RegisterRequest;
@@ -120,6 +121,9 @@ public interface UserService {
 
     @GET("api/orders/fetch-order-history/")
     Call <List<OrderResponse>> orderResponses (@Header("Authorization")  String token);
+
+    @GET("api/orders/fetch-summary/")
+    Call <OrderSummary>ordersummary (@Header("Authorization")  String token);
 
 
 }
