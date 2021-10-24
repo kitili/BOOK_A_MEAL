@@ -56,7 +56,8 @@ public class OrderHistoryActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_my_cart);
         order_amount=findViewById(R.id.order_amount);
         order_id=findViewById(R.id.order_id);
-
+        backhome = findViewById(R.id.back_btn);
+        backhome.setOnClickListener(this);
         rvFood=findViewById(R.id.orderList);
         ordersList=new ArrayList<>();
         setMenuInfo();
@@ -133,6 +134,9 @@ public class OrderHistoryActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
+        if (view == backhome) {
+            onBackPressed();
 
+        }
     }
 }

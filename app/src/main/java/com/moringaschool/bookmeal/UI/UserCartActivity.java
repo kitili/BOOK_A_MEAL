@@ -61,6 +61,8 @@ public class UserCartActivity extends AppCompatActivity implements View.OnClickL
         delete=findViewById(R.id.delete);
         checkout=findViewById(R.id.checkout);
         rvFood=findViewById(R.id.orderList);
+        backhome = findViewById(R.id.back_btn);
+        backhome.setOnClickListener(this);
         ordersList=new ArrayList<>();
         delete.setOnClickListener(this);
         checkout.setOnClickListener(this);
@@ -180,6 +182,9 @@ public class UserCartActivity extends AppCompatActivity implements View.OnClickL
             });
 
         }
+        if (view == backhome) {
+            onBackPressed();
 
+        }
     }
 }
