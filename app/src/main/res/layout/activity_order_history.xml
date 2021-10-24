@@ -1,35 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#f2f2f2"
-    android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:openDrawer="start">
+    android:background="#f2f2f2"
+
+    android:layout_height="match_parent"
+    tools:context=".UI.UserCartActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:orientation="vertical"
 
-        <ImageView
-            android:id="@+id/back_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/chevron_left" />
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/chevron_left" />
+        </LinearLayout>
+        <!--top bar-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/header_bg"
+            android:padding="0dp">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="160dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ben"
+                />
+            <!--top bar-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,12 +50,6 @@
                 android:background="@drawable/header_bg"
                 android:padding="12dp"
                 android:layout_marginBottom="0dp">
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="160dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/ben"
-                    />
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
@@ -62,41 +68,67 @@
                     android:gravity="center"
                     android:fontFamily="@font/actor"
                     android:background="@color/white"
-                    android:text="Order History"
+                    android:text="My Order History"
                     android:textColor="@color/orange"
-                    android:textSize="22sp" />
+                    android:textSize="18sp"/>
 
             </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            >
+            <TextView
+                android:id="@+id/order_id"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"/>
+            <TextView
+                android:id="@+id/orderAmnt"
+                android:layout_width="101dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
+                android:textStyle="bold"
+                android:text="Total Amount "
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="26dp" />
 
+            <TextView
+                android:id="@+id/order_amount"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintStart_toEndOf="@+id/orderAmnt"
+                tools:layout_editor_absoluteY="30dp"
+                tools:ignore="MissingConstraints" />
 
-            <!--            <com.google.android.material.textfield.TextInputLayout-->
-            <!--                android:id="@+id/food_search"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_below="@+id/text"-->
-            <!--                android:layout_margin="10dp"-->
-            <!--                android:hint="Search Food"-->
-            <!--                app:startIconDrawable="@drawable/search">-->
-            <!--                <com.google.android.material.textfield.TextInputEditText-->
-            <!--                    android:id="@+id/food_search1"-->
-            <!--                    android:layout_width="match_parent"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:background="@color/white" />-->
-            <!--            </com.google.android.material.textfield.TextInputLayout>-->
-
-            <RelativeLayout
+            <TextView
+                android:id="@+id/texty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp">
+                android:layout_marginStart="16dp"
+                android:textColor="@color/orange_700"
+                android:gravity="center"
+                android:text="ORDER ITEMS"
+                app:layout_constraintStart_toEndOf="@+id/orderAmnt"
+                tools:layout_editor_absoluteY="30dp"
+                tools:ignore="MissingConstraints" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/orderList"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </RelativeLayout>
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/orderList"
+                android:layout_width="409dp"
+                android:layout_height="677dp"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="53dp" />
 
         </LinearLayout>
-    </ScrollView>
 
-</LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

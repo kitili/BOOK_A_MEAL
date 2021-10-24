@@ -7,9 +7,9 @@
         <item
             android:id="@+id/nav_cart"
             android:title="My Food Cart"></item>
-        <item
-            android:id="@+id/nav_orders"
-            android:title="Today's Orders"></item>
+<!--        <item-->
+<!--            android:id="@+id/nav_orders"-->
+<!--            android:title="Today's Orders"></item>-->
         <item
             android:id="@+id/nav_history"
             android:title="Order History"></item>

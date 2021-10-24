@@ -44,13 +44,10 @@ public class UserCartActivity extends AppCompatActivity implements View.OnClickL
 
     String token,user_id,orders_id;
     TextView order_amount,order_id;
-    RecyclerView mRecyclerView;
     RecyclerView rvFood;
-    OrderUserAdapter orderAdapter;
     List<Order> ordersList;
     ProgressBar mProgressBar;
     SharedPreferences sharedpreferences;
-    TextView mErrorTextView;
     OrderResponseAdapter.RecyclerViewClickListener listener;
     ImageView backhome,delete;
     Button checkout;

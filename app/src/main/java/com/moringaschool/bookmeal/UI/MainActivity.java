@@ -205,10 +205,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.nav_home:
                 break;
-            case R.id.nav_orders:
-                intent = new Intent(MainActivity.this, OrderActivity.class);
-                startActivity(intent);
-                break;
             case R.id.nav_history:
                 intent = new Intent(MainActivity.this, OrderHistoryActivity.class);
                 startActivity(intent);
