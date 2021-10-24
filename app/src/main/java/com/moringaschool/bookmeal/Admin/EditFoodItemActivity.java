@@ -153,11 +153,11 @@ public class EditFoodItemActivity extends AppCompatActivity implements View.OnCl
 
         //creating a call and calling the upload image method
 
-        Call<List<Menu>> call = ApiClient.getService().editMenuResponse(requestFile, names, prices, descriptions, partImage, token,menu_id);
+        Call<Menu> call = ApiClient.getService().editMenuResponse(requestFile, names, prices, descriptions, partImage, token,menu_id);
         //finally performing the call
-        call.enqueue( new Callback<List<Menu>>() {
+        call.enqueue( new Callback<Menu>() {
             @Override
-            public void onResponse(Call<List<Menu>> call, Response<List<Menu>> response) {
+            public void onResponse(Call<Menu> call, Response<Menu> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Edited Menu Successfully...", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(EditFoodItemActivity.this, ViewMenuActivity.class));
@@ -172,7 +172,7 @@ public class EditFoodItemActivity extends AppCompatActivity implements View.OnCl
             }
 
             @Override
-            public void onFailure(Call<List<Menu>> call, Throwable t) {
+            public void onFailure(Call<Menu> call, Throwable t) {
                 String message = t.getLocalizedMessage();
                 Toast.makeText(EditFoodItemActivity.this, message, Toast.LENGTH_LONG).show();
             }

@@ -83,7 +83,7 @@
                     android:id="@+id/number_transaction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Users:"
+                    android:text="Number of Transactions"
                     android:textColor="@color/white"
                     android:fontFamily="@font/actor"
                     android:textStyle="bold"

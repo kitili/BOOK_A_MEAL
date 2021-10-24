@@ -86,8 +86,9 @@ public interface UserService {
     Call<Void> setMenu (@Header("Authorization")  String token,
                            @Path("menu_id") String menu_id);
 
+    @Multipart
     @PUT("https://bookameal.herokuapp.com/api/menus/item/{menu_id}/edit/")
-    Call <List<Menu>>editMenuResponse (
+    Call <Menu> editMenuResponse (
             @Part("image\"; filename=\"myfile.jpg\" ") RequestBody file,
             @Part("name") RequestBody name,
             @Part("price") RequestBody price,
