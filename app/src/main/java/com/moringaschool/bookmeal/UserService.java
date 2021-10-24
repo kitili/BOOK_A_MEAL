@@ -13,6 +13,7 @@ import com.moringaschool.bookmeal.Model.OrderResponse;
 import com.moringaschool.bookmeal.Model.OrderSummary;
 import com.moringaschool.bookmeal.Model.Orders;
 import com.moringaschool.bookmeal.Model.OrdersResponse;
+import com.moringaschool.bookmeal.Model.ProfileResponse;
 import com.moringaschool.bookmeal.Model.RegisterRequest;
 import com.moringaschool.bookmeal.Model.RegisterResponse;
 import com.moringaschool.bookmeal.Model.ResetPasswordRequest;
@@ -97,14 +98,10 @@ public interface UserService {
             @Header("Authorization")  String token,
             @Path("menu_id") String menu_id
     );
-    @GET("api/users/profile")
-    Call<LoginResponse> userProfilesList (@Header("Authorization")  String token);
 
     @GET("api/orders/fetch-orders/")
     Call <List<Orders>>orderResponse (@Header("Authorization")  String token);
 
-    @GET("api/users/profiles/")
-    Call <List<LoginResponse>>usersResponse (@Header("Authorization")  String token);
 
     @POST("api/orders/add/")
     Call <OrdersResponse> makeorderResponse (@Body MakeOrder makeOrder,
@@ -125,6 +122,9 @@ public interface UserService {
 
     @GET("api/orders/fetch-summary/")
     Call <OrderSummary>ordersummary (@Header("Authorization")  String token);
+
+    @GET("api/users/profiles")
+    Call <List<ProfileResponse>> userProfilesList (@Header("Authorization")  String token);
 
 
 }
